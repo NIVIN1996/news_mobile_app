@@ -13,13 +13,13 @@ extension ResponsiveConfig on BuildContext {
   double get percentWidth => screenWidth / 100;
   double get percentHeight => screenHeight / 100;
 
-  void pop({Object? data}) => Navigator.of(this).pop(data);
-  Future pushNamedReplacement(String name, {Object? arguments}) async =>
-      await Navigator.pushReplacementNamed(this, name, arguments: arguments);
-  Future pushNamed(String name, {Object? arguments}) async =>
-      await Navigator.pushNamed(this, name, arguments: arguments);
-  Future pushNamedAndRemoveUntil(String name, {Object? arguments}) async =>
-      await Navigator.pushNamedAndRemoveUntil(this, name, (route) => false, arguments: arguments);
+  // void pop({Object? data}) => Navigator.of(this).pop(data);
+  // Future pushNamedReplacement(String name, {Object? arguments}) async =>
+  //     await Navigator.pushReplacementNamed(this, name, arguments: arguments);
+  // Future pushNamed(String name, {Object? arguments}) async =>
+  //     await Navigator.pushNamed(this, name, arguments: arguments);
+  // Future pushNamedAndRemoveUntil(String name, {Object? arguments}) async =>
+  //     await Navigator.pushNamedAndRemoveUntil(this, name, (route) => false, arguments: arguments);
 }
 
 //Size without context extension

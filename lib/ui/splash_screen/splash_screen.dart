@@ -3,7 +3,9 @@ import 'package:lottie/lottie.dart';
 
 import '../../utils/color/colors.dart';
 import '../../utils/text_style/text_style.dart';
-import '../home_screen/home_screen.dart';
+
+
+import '../login_screen/login_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //set time to load the new page
     Future.delayed(const Duration(seconds: 10), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => const LoginScreen()));
     });
     super.initState();
   }

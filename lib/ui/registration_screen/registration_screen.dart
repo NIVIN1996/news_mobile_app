@@ -19,12 +19,20 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
+  late TextEditingController confirmPasswordController;
   @override
   void initState() {
-    // TODO: implement initState
     emailController = TextEditingController();
     passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
     super.initState();
+  }
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -56,13 +64,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   labelText: "Email",
                   controller: emailController,
                 ),
-                TextFormWidget(
+                TextFormWidget(showEyeIcon: true,
                   labelText: "Password",
                   controller: passwordController,
                 ),
                 TextFormWidget(
+                  showEyeIcon: true,
                   labelText: "Confirm Password",
-                  controller: passwordController,
+                  controller: confirmPasswordController,
                 ),
 
                 Padding(

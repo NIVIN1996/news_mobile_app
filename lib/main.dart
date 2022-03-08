@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/ui/splash_screen/splash_screen.dart';
+import 'package:news_mobile_app/services/navigator/routes.dart' as router;
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: router.generateRoute,
       theme: ThemeData(
 
         primarySwatch: Colors.grey,

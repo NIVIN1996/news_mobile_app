@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/color/colors.dart';
 import 'package:news_mobile_app/utils/common_padding/common_padding.dart';
+import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
+import '../../services/navigator/routes.dart';
 import '../../utils/text_style/text_style.dart';
 import '../../widgets/button_widget/custom_button_widget.dart';
 import '../../widgets/text_form_widget/text_form_widget.dart';
@@ -31,7 +33,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       backgroundColor: AppColor.whiteColor,
       body: Center(
         child: Container(
-          height: context.percentHeight * 50,
+          height: context.percentHeight * 60,
           width: double.infinity,
           margin: EdgeInsets.all(context.widthPx * 20.0),
           decoration: BoxDecoration(color: AppColor.whiteColor,
@@ -62,27 +64,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   labelText: "Confirm Password",
                   controller: passwordController,
                 ),
+
                 Padding(
                   padding: CommonPadding.paddingH10(context),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text("Forgot Password?",
-                          textAlign: TextAlign.right, style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: CommonPadding.paddingH10(context),
-                  child: const CustomButton(label: "Sign In",),
+                  child: const CustomButton(label: "Sign Up",),
                 ),
                 Padding(
                   padding: CommonPadding.paddingH10(context),
                   child: GestureDetector(
                     onTap: (){
-
+                      context.pushNamed(ScreenNames.login);
                     },
-                    child: Text("Don't have an Account? Sign Up",
+                    child: Text("Already Have an Account? Sign In",
                         textAlign: TextAlign.right, style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
                   ),
                 ),

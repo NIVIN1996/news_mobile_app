@@ -20,10 +20,15 @@ class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController passwordController;
   @override
   void initState() {
-    // TODO: implement initState
     emailController = TextEditingController();
     passwordController = TextEditingController();
     super.initState();
+  }
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -57,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextFormWidget(
                   labelText: "Password",
+                  showEyeIcon: true,
                   controller: passwordController,
                 ),
                 Padding(
@@ -64,16 +70,24 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text("Forgot Password?",
-                          textAlign: TextAlign.right,
-                          style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
+                      GestureDetector(
+                        onTap:(){
+                          context.pushNamed(ScreenNames.forgotPasswordScreen);
+                        },
+                        child: Text("Forgot Password?",
+                            textAlign: TextAlign.right,
+                            style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
+                      ),
                     ],
                   ),
                 ),
                 Padding(
                   padding: CommonPadding.paddingH10(context),
-                  child: const CustomButton(
+                  child:  CustomButton(
                     label: "Sign In",
+                    onPress: (){
+                      context.pushNamed(ScreenNames.homeScreen);
+                    },
                   ),
                 ),
                 Padding(

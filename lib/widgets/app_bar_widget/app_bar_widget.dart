@@ -13,6 +13,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String label;
   final AppBar appBar;
   final void Function()? menuPress;
+  final void Function()? filterPress;
   final void Function()? notificationPress;
 
   const AppBarWidget({
@@ -21,7 +22,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.menuPress,
     this.notificationPress,
     this.showFilter = true,
-    this.label = "News4U",
+    this.label = "News4U", this.filterPress,
   }) : super(key: key);
 
   @override
@@ -49,6 +50,15 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         );
       }),
       actions: [
+        Padding(
+          //! trailing padding
+          padding: AppBarSize.tailingPadding(context),
+          child: GestureDetector(
+            onTap: filterPress ?? () {},
+            //! Search icon widget
+            child: Container(child: AppBarSize.filterIconWidget(context)),
+          ),
+        ),
         Padding(
           //! trailing padding
           padding: AppBarSize.tailingPadding(context),

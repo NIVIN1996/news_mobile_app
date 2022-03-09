@@ -37,7 +37,7 @@ class AppBarSize {
   }
 
   static double leadingPaddingSize(BuildContext context) {
-    double pad = context.widthPx * 10;
+    double pad = context.widthPx * 20;
     if (context.screenWidth > 600) {
       pad = 10;
     }
@@ -87,6 +87,13 @@ class AppBarSize {
           width: AppBarSize.menuIconWidth(context),
         ),
       ),
+    );
+  }
+
+  static Widget filterIconWidget(BuildContext context) {
+    return Transform.scale(
+      scale: iconScale(),
+      child: const Icon(Icons.tune,color: AppColor.black,)
     );
   }
 

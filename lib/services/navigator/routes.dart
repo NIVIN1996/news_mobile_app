@@ -6,6 +6,7 @@ import 'package:news_mobile_app/ui/menu_screen/menu_screen.dart';
 
 import '../../ui/home_screen/home_screen.dart';
 import '../../ui/language_screen/choose_language_screen.dart';
+import '../../ui/news_details_screen/news_details_screen.dart';
 import '../../ui/registration_screen/registration_screen.dart';
 
 class ScreenNames {
@@ -17,6 +18,7 @@ class ScreenNames {
   static const String changePasswordScreen = "ui/change_password_screen/change_password_screen";
   static const String homeScreen = "ui/home_screen/home_screen";
   static const String menuScreen = "ui/menu_screen/menu_screen";
+  static const String newsDetailsScreen = "ui/news_details_screen/news_details_screen";
 
 }
 
@@ -38,6 +40,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const HomeScreen());
     case ScreenNames.menuScreen:
       return MaterialPageRoute(builder: (context) => const MenuScreen());
+    case ScreenNames.newsDetailsScreen:
+      return MaterialPageRoute(builder: (context) => const NewsDetailsScreen());
 
     default:
       return MaterialPageRoute(builder: (context) => const HomeScreen());

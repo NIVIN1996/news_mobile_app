@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColor {
   static const Color primaryColor = Color(0xff575194);
   static const Color primaryColor2 = Color(0xff8898F8);
-  static const Color primaryColor3 = Color(0xff575194);
+  static const Color primaryColor3 = Color(0xff736AFF);
   static const Color primaryColor4 = Color(0xff9792CC);
   static const Color buttonActive = Color(0xFF171717);
   static const Color black = Color(0xFF000000);
@@ -25,7 +25,7 @@ class AppColor {
   static const Color cardColor2 = Color(0xFFFEF1E0);
   static const Color cardColor5 = Color(0xFFE0FEEE);
   static const Color yellow = Color(0xFFFFDA1A);
-  static const Color yellow2 = Color(0xFFFEBD3D);
+  static const Color yellow2 = Color(0xFFFFCE44);
   static const Color cream = Color(0xFFF3EEEE);
   static const Color blue = Color(0xFF97CDFF);
   static const Color blue1 = Color(0xFFF2F5F7);
@@ -33,12 +33,13 @@ class AppColor {
   static const Color grey5 = Color(0xFFBBBBBB);
   static const Color green = Color(0xFF4CE417);
   static const Color red = Color(0xFFF16073);
+  static const Color orange = Color(0xFFFFCBA4);
   static const Color lightRed = Color(0xFFF4D8DD);
   static const Color lightViolet = Color(0xFFE6D4E8);
   static const Color darkViolet = Color(0xFF413E62);
   static const Color divider = Color(0xFFF2F1FF);
   static const Color green2 = Color(0xFF0C9C00);
-  static const Color green3 = Color(0xFF98FB98);
+  static const Color green3 = Color(0xFF93FFE8);
   static const Color gradient1 = Color(0xFF804D9A);
   static const Color gradient2 = Color(0xFFA06DAF);
   static const Color gradient3 = Color(0xFF624C9F);

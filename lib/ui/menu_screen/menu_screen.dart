@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
@@ -26,6 +27,43 @@ class _MenuScreenState extends State<MenuScreen> {
               color: AppColor.yellow,
             ),
             child: Text('News4U',style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 24)),
+          ),
+
+           ExpansionTile(
+            title:  Text('Category',style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 20)),
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ListTile(
+                    title:  Text('Politics',style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
+                    onTap: () {
+
+                    },
+                  ),
+                  ListTile(
+                    title:  Text('Business',style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
+                    onTap: () {
+
+                    },
+                  ),
+                  ListTile(
+                    title:  Text('Sports',style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
+                    onTap: () {
+
+                    },
+                  ),
+                  ListTile(
+                    title:  Text('Entertainment',style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
+                    onTap: () {
+
+                    },
+                  ),
+                ],
+              ),
+
+            ],
           ),
 
           ListTile(

@@ -4,9 +4,7 @@ import 'package:lottie/lottie.dart';
 import '../../utils/color/colors.dart';
 import '../../utils/text_style/text_style.dart';
 
-
 import '../login_screen/login_screen.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -20,15 +18,14 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     //set time to load the new page
     Future.delayed(const Duration(seconds: 10), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Container(
         alignment: Alignment.center,
         child: Column(
@@ -36,13 +33,14 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-                child: Lottie.asset('assets/splash_icon/splash.json',)),
+                child: Lottie.asset(
+              'assets/splash_icon/splash.json',
+            )),
             const SizedBox(height: 10),
             Text(
               "NEWS4U",
               textAlign: TextAlign.center,
-              style: TextFontStyle.med(color: AppColor.black, size: 30),
-
+              style: TextFontStyle.med(size: 30),
             ),
           ],
         ),

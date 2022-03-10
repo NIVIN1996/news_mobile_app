@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/color/colors.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
-
 
 import '../../utils/text_style/text_style.dart';
 import '../../widgets/app_bar_widget/app_bar_widget.dart';
@@ -20,28 +18,26 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      drawer:    const MenuScreen(),
-      backgroundColor: AppColor.whiteColor,
+    return Scaffold(
+      drawer: const MenuScreen(),
       appBar: AppBarWidget(
         menuPress: () {
           Scaffold.of(context).openDrawer();
         },
-        notificationPress: () {
-        },
+        notificationPress: () {},
         appBar: AppBar(),
       ),
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Center(
-          child:    Column(
-            children:  [
+          child: Column(
+            children: [
               Row(
                 children: [
                   Expanded(
                     flex: 8,
                     child: Container(
                       // height: MediaQuery.of(context).size.height * 0.10,
-                      margin:   EdgeInsets.symmetric(horizontal:context.widthPx* 25.0,vertical:context.heightPx* 20),
+                      margin: EdgeInsets.symmetric(horizontal: context.widthPx * 25.0, vertical: context.heightPx * 20),
                       decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(10)),
                           border: Border.all(
@@ -49,40 +45,37 @@ class _HomeScreenState extends State<HomeScreen> {
                           )),
                       child: TextFormField(
                         // controller: controller,
-                        style: TextFontStyle.med(
-                            color: AppColor.fontColor,
-                            size: context.textPx* 16),
+                        style: TextFontStyle.med(color: AppColor.fontColor, size: context.textPx * 16),
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Search',
-                          hintStyle: TextFontStyle.regular(
-                              color: AppColor.hintColor,
-                              size: context.textPx* 16),
+                          hintStyle: TextFontStyle.regular(color: AppColor.hintColor, size: context.textPx * 16),
                           filled: true,
                           fillColor: AppColor.whiteColor,
                           prefixIcon: Padding(
-                            padding:  EdgeInsets.symmetric(horizontal:context.widthPx* 10.0),
+                            padding: EdgeInsets.symmetric(horizontal: context.widthPx * 10.0),
                             child: InkWell(
                               onTap: () {},
-                              child: const Icon(Icons.search,color: AppColor.hintColor,),
+                              child: const Icon(
+                                Icons.search,
+                                color: AppColor.hintColor,
+                              ),
                             ),
                           ),
-                          contentPadding:  EdgeInsets.symmetric(
-                              vertical:context.heightPx* 12, horizontal:context.widthPx* 20),
+                          contentPadding:
+                              EdgeInsets.symmetric(vertical: context.heightPx * 12, horizontal: context.widthPx * 20),
                           focusedBorder: OutlineInputBorder(
-                            borderSide:
-                            const BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderSide: const BorderSide(color: Colors.transparent),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: const BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         ),
                       ),
                     ),
                   ),
-
                 ],
               ),
               const CategoryWidget(),

@@ -29,7 +29,6 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
       },
       child: Card(
         elevation: 5,
-        shadowColor: AppColor.lightBlue,
         margin: EdgeInsets.symmetric(vertical: context.heightPx * 5, horizontal: context.widthPx * 25),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -39,9 +38,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
             Expanded(
               flex: 2,
               child: GestureDetector(
-                onTap: () {
-
-                },
+                onTap: () {},
                 child: Padding(
                   padding: EdgeInsets.all(context.widthPx * 10.0),
                   child: CachedNetworkImage(
@@ -84,7 +81,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                           Text(
                             "Sports",
                             textAlign: TextAlign.start,
-                            style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 16),
+                            style: TextFontStyle.med(size: context.textPx * 16),
                           ),
                           GestureDetector(
                               onTap: () {
@@ -102,7 +99,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                       textAlign: TextAlign.start,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                      style: TextFontStyle.regular(color: AppColor.black, size: context.textPx * 14),
+                      style: TextFontStyle.regular(size: context.textPx * 14),
                     ),
                     Padding(
                         padding: EdgeInsets.symmetric(

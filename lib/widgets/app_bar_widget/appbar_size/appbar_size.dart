@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile_app/providers/theme_provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utils/color/colors.dart';
 import '../../../utils/responsive_config/responsive_config.dart';
-
 
 class AppBarSize {
   AppBarSize();
@@ -43,8 +44,9 @@ class AppBarSize {
     }
     return pad;
   }
+
   static EdgeInsets leadingPadding(BuildContext context) {
-    return  EdgeInsets.only(
+    return EdgeInsets.only(
       left: AppBarSize.leadingPaddingSize(context),
     );
   }
@@ -58,9 +60,8 @@ class AppBarSize {
   }
 
   static EdgeInsets tailingPadding(BuildContext context) {
-    return  EdgeInsets.only(
+    return EdgeInsets.only(
       right: AppBarSize.tailingPaddingSize(context),
-
     );
   }
 
@@ -76,37 +77,30 @@ class AppBarSize {
   //! ** Icon Widgets
 
   static Widget menuIconWidget(BuildContext context) {
-    return Container(
-      color: AppColor.whiteColor,
-      child: Transform.scale(
-        scale: iconScale(),
-        child: Image.asset(
-          "assets/icons/menu.png",
-
-          fit: BoxFit.scaleDown,
-          width: AppBarSize.menuIconWidth(context),
-        ),
+    return Transform.scale(
+      scale: iconScale(),
+      child: Image.asset(
+        "assets/icons/menu.png",
+        fit: BoxFit.scaleDown,
+        width: AppBarSize.menuIconWidth(context),
       ),
     );
   }
 
   static Widget filterIconWidget(BuildContext context) {
     return Transform.scale(
-      scale: iconScale(),
-      child: const Icon(Icons.tune,color: AppColor.black,)
-    );
+        scale: iconScale(),
+        child: const Icon(
+          Icons.tune,
+        ));
   }
 
   static Widget notificationIconWidget(BuildContext context) {
     return Transform.scale(
-      scale: iconScale(),
-      child: Image.asset(
-        "assets/icons/notification.png",
-        fit: BoxFit.scaleDown,
-        //! Notification icon responsive height
-        width: AppBarSize.notificationIconWidth(context),
-      ),
-    );
+        scale: iconScale(),
+        child: const Icon(
+          Icons.notifications,
+        ));
   }
 
 //! ** End Icons Widgets

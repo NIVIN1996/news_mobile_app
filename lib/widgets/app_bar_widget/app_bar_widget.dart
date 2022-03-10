@@ -22,7 +22,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     this.menuPress,
     this.notificationPress,
     this.showFilter = true,
-    this.label = "News4U", this.filterPress,
+    this.label = "News4U",
+    this.filterPress,
   }) : super(key: key);
 
   @override
@@ -32,12 +33,11 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       //! toolbar height
-      backgroundColor: AppColor.whiteColor,
       elevation: 0,
       title: Center(
         child: Text(
           "News4U",
-          style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 24),
+          style: TextFontStyle.med(size: context.textPx * 24),
         ),
       ),
       //! leading padding

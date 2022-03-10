@@ -24,15 +24,16 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
       body: Center(
         child: Container(
           height: context.percentHeight * 40,
           width: double.infinity,
           margin: EdgeInsets.all(context.widthPx * 20.0),
-          decoration: BoxDecoration(color: AppColor.whiteColor,
+          decoration: BoxDecoration(
+              color: AppColor.whiteColor,
               boxShadow: const [BoxShadow(color: AppColor.lightColor, blurRadius: 5.0)],
-              borderRadius: BorderRadius.circular(context.widthPx * 10), border: Border.all(color: AppColor.hintColor)),
+              borderRadius: BorderRadius.circular(context.widthPx * 10),
+              border: Border.all(color: AppColor.hintColor)),
           child: Column(
             children: [
               Padding(
@@ -40,7 +41,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
                 child: Text(
                   'Choose Language',
                   textAlign: TextAlign.center,
-                  style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 20),
+                  style: TextFontStyle.med(size: context.textPx * 20),
                 ),
               ),
               const Divider(

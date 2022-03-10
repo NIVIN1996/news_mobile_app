@@ -24,6 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     passwordController = TextEditingController();
     super.initState();
   }
+
   @override
   void dispose() {
     emailController.dispose();
@@ -34,15 +35,14 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
       body: Center(
         child: Container(
           height: context.percentHeight * 50,
           width: double.infinity,
           margin: EdgeInsets.all(context.widthPx * 20.0),
           decoration: BoxDecoration(
-              color: AppColor.whiteColor,
-              boxShadow: const [BoxShadow(color: AppColor.lightColor, blurRadius: 5.0)],
+              color: Theme.of(context).backgroundColor,
+              boxShadow: const [BoxShadow(blurRadius: 5.0)],
               borderRadius: BorderRadius.circular(context.widthPx * 10),
               border: Border.all(color: AppColor.hintColor)),
           child: Padding(
@@ -52,9 +52,8 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Padding(
                   padding: CommonPadding.paddingH10(context),
-                  child: Text("News4U",
-                      textAlign: TextAlign.right,
-                      style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 30)),
+                  child:
+                      Text("News4U", textAlign: TextAlign.right, style: TextFontStyle.med(size: context.textPx * 30)),
                 ),
                 TextFormWidget(
                   labelText: "Email",
@@ -71,21 +70,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        onTap:(){
+                        onTap: () {
                           context.pushNamed(ScreenNames.forgotPasswordScreen);
                         },
                         child: Text("Forgot Password?",
-                            textAlign: TextAlign.right,
-                            style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
+                            textAlign: TextAlign.right, style: TextFontStyle.med(size: context.textPx * 14)),
                       ),
                     ],
                   ),
                 ),
                 Padding(
                   padding: CommonPadding.paddingH10(context),
-                  child:  CustomButton(
+                  child: CustomButton(
                     label: "Sign In",
-                    onPress: (){
+                    onPress: () {
                       context.pushNamed(ScreenNames.homeScreen);
                     },
                   ),
@@ -97,8 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       context.pushNamed(ScreenNames.registrationScreen);
                     },
                     child: Text("Don't have an Account? Sign Up",
-                        textAlign: TextAlign.right,
-                        style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
+                        textAlign: TextAlign.right, style: TextFontStyle.med(size: context.textPx * 14)),
                   ),
                 ),
               ],

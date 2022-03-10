@@ -23,15 +23,14 @@ class _NewsListWidgetState extends State<NewsListWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal:context.widthPx* 25.0),
+            padding: EdgeInsets.symmetric(horizontal: context.widthPx * 25.0),
             child: Text(
               "Highlights",
               textAlign: TextAlign.start,
-              style: TextFontStyle.semiBold(color: AppColor.black, size: context.textPx * 20),
+              style: TextFontStyle.semiBold(size: context.textPx * 20),
             ),
           ),
           Container(
-            color: AppColor.whiteColor,
             padding: EdgeInsets.symmetric(vertical: context.heightPx * 5.0),
             child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),

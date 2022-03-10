@@ -27,6 +27,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     confirmPasswordController = TextEditingController();
     super.initState();
   }
+
   @override
   void dispose() {
     emailController.dispose();
@@ -38,33 +39,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
       body: Center(
         child: Container(
           height: context.percentHeight * 60,
           width: double.infinity,
           margin: EdgeInsets.all(context.widthPx * 20.0),
-          decoration: BoxDecoration(color: AppColor.whiteColor,
+          decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor,
               boxShadow: const [BoxShadow(color: AppColor.lightColor, blurRadius: 5.0)],
-              borderRadius: BorderRadius.circular(context.widthPx * 10), border: Border.all(color: AppColor.hintColor)),
+              borderRadius: BorderRadius.circular(context.widthPx * 10),
+              border: Border.all(color: AppColor.hintColor)),
           child: Padding(
             padding: CommonPadding.paddingW25(context),
             child: Column(
-
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 Padding(
                   padding: CommonPadding.paddingH10(context),
                   child: Text("News4U",
-                      textAlign: TextAlign.right, style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 30)),
+                      textAlign: TextAlign.right,
+                      style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 30)),
                 ),
-
                 TextFormWidget(
                   labelText: "Email",
                   controller: emailController,
                 ),
-                TextFormWidget(showEyeIcon: true,
+                TextFormWidget(
+                  showEyeIcon: true,
                   labelText: "Password",
                   controller: passwordController,
                 ),
@@ -73,19 +74,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   labelText: "Confirm Password",
                   controller: confirmPasswordController,
                 ),
-
                 Padding(
                   padding: CommonPadding.paddingH10(context),
-                  child: const CustomButton(label: "Sign Up",),
+                  child: const CustomButton(
+                    label: "Sign Up",
+                  ),
                 ),
                 Padding(
                   padding: CommonPadding.paddingH10(context),
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       context.pushNamed(ScreenNames.login);
                     },
                     child: Text("Already Have an Account? Sign In",
-                        textAlign: TextAlign.right, style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
+                        textAlign: TextAlign.right,
+                        style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
                   ),
                 ),
               ],

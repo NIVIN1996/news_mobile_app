@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:news_mobile_app/providers/theme_provider/theme_provider.dart';
 import 'package:news_mobile_app/ui/splash_screen/splash_screen.dart';
 import 'package:news_mobile_app/services/navigator/routes.dart' as router;
+import 'package:provider/provider.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -16,17 +18,20 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'News4U',
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: router.generateRoute,
-      theme: ThemeData(
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+        builder: (context, _) {
+          final themeProvider = Provider.of<ThemeProvider>(context);
 
-        primarySwatch: Colors.grey,
-      ),
-      home: const SplashScreen(),
-    );
-  }
+          return MaterialApp(
+            title: 'News4U',
+            themeMode: themeProvider.themeMode,
+            theme: MyThemes.lightTheme,
+            darkTheme: MyThemes.darkTheme,
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: router.generateRoute,
+            home: const SplashScreen(),
+          );
+        },
+      );
 }
-

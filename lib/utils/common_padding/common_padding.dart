@@ -5,7 +5,8 @@ class CommonPadding {
   static EdgeInsetsGeometry paddingW25(BuildContext context) {
     return EdgeInsets.symmetric(horizontal: context.widthPx * 25);
   }
+
   static EdgeInsetsGeometry paddingH10(BuildContext context) {
-    return EdgeInsets.symmetric( vertical: context.heightPx * 10);
+    return EdgeInsets.symmetric(vertical: context.heightPx * 10);
   }
 }

@@ -19,7 +19,6 @@ class ScreenNames {
   static const String homeScreen = "ui/home_screen/home_screen";
   static const String menuScreen = "ui/menu_screen/menu_screen";
   static const String newsDetailsScreen = "ui/news_details_screen/news_details_screen";
-
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {

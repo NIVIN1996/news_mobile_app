@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../color/colors.dart';
 
-
-
 class TextFontStyle {
   static TextStyle lightFont({required Color color, required double size}) {
     return TextStyle(
@@ -14,7 +12,7 @@ class TextFontStyle {
     return TextStyle(color: color, fontWeight: FontWeight.w300, fontStyle: FontStyle.normal, fontSize: size);
   }
 
-  static TextStyle regular({Color color = AppColor.black, required double size, double height = 1.4}) {
+  static TextStyle regular({Color? color, required double size, double height = 1.4}) {
     return TextStyle(
         color: color, height: height, fontWeight: FontWeight.w400, fontStyle: FontStyle.normal, fontSize: size);
   }
@@ -29,7 +27,7 @@ class TextFontStyle {
     );
   }
 
-  static TextStyle semiBold({required Color color, required double size}) {
+  static TextStyle semiBold({Color? color, required double size}) {
     return TextStyle(
         color: color, height: 1.2, fontWeight: FontWeight.w600, fontStyle: FontStyle.normal, fontSize: size);
   }
@@ -49,7 +47,7 @@ class TextFontStyle {
         color: color, height: 1.2, fontWeight: FontWeight.w900, fontStyle: FontStyle.normal, fontSize: size);
   }
 
-  static TextStyle med({required Color color, required double size}) {
+  static TextStyle med({Color? color, required double size}) {
     return TextStyle(
         color: color,
         fontWeight: FontWeight.w500,

@@ -59,7 +59,7 @@ class _TextFormWidgetState extends State<TextFormWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.padding ?? EdgeInsets.symmetric( vertical: context.heightPx * 8),
+      padding: widget.padding ?? EdgeInsets.symmetric(vertical: context.heightPx * 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -77,11 +77,9 @@ class _TextFormWidgetState extends State<TextFormWidget> {
               }
             },
             decoration: InputDecoration(
-                border:  const OutlineInputBorder(
+                border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
-                    borderSide:  BorderSide(color: AppColor.hintColor,width: 2)
-                ),
-
+                    borderSide: BorderSide(color: AppColor.hintColor, width: 2)),
                 suffixIcon: (widget.showEyeIcon)
                     ? IconButton(
                         splashColor: Colors.transparent,

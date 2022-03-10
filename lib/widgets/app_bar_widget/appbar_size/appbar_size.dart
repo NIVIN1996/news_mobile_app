@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/providers/theme_provider/theme_provider.dart';
-import 'package:provider/provider.dart';
-
-import '../../../utils/color/colors.dart';
 import '../../../utils/responsive_config/responsive_config.dart';
 
 class AppBarSize {

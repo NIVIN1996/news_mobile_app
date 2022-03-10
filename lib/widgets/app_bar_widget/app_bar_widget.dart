@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
-
-import '../../ui/menu_screen/menu_screen.dart';
-import '../../ui/menu_screen/menu_screen.dart';
-import '../../ui/menu_screen/menu_screen.dart';
-import '../../utils/color/colors.dart';
 import '../../utils/text_style/text_style.dart';
 import 'appbar_size/appbar_size.dart';
 

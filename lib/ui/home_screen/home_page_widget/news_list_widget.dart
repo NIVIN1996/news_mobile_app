@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
-import '../../../utils/color/colors.dart';
 import '../../../utils/text_style/text_style.dart';
 import 'news_list_item_widget.dart';
 

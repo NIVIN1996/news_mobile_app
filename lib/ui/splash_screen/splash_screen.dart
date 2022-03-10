@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../utils/color/colors.dart';
 import '../../utils/text_style/text_style.dart';
 
 import '../login_screen/login_screen.dart';

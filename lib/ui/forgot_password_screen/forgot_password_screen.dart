@@ -29,14 +29,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
       body: Center(
         child: Container(
           height: context.percentHeight * 40,
           width: double.infinity,
           margin: EdgeInsets.all(context.widthPx * 20.0),
           decoration: BoxDecoration(
-              color: AppColor.whiteColor,
+              color: Theme.of(context).backgroundColor,
               boxShadow: const [BoxShadow(color: AppColor.lightColor, blurRadius: 5.0)],
               borderRadius: BorderRadius.circular(context.widthPx * 10),
               border: Border.all(color: AppColor.hintColor)),
@@ -47,9 +46,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               children: [
                 Padding(
                   padding: CommonPadding.paddingH10(context),
-                  child: Text("News4U",
-                      textAlign: TextAlign.right,
-                      style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 30)),
+                  child:
+                      Text("News4U", textAlign: TextAlign.right, style: TextFontStyle.med(size: context.textPx * 30)),
                 ),
                 TextFormWidget(
                   labelText: "Email",
@@ -57,8 +55,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 ),
                 Padding(
                   padding: CommonPadding.paddingH10(context),
-                  child:  CustomButton(
-                    onPress: (){
+                  child: CustomButton(
+                    onPress: () {
                       context.pushNamed(ScreenNames.changePasswordScreen);
                     },
                     label: "Send",

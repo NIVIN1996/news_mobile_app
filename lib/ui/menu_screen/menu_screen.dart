@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile_app/services/navigator/routes.dart';
+import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
 import '../../providers/theme_provider/theme_provider.dart';
@@ -78,7 +80,9 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           ListTile(
             title: Text('Terms and Conditions', style: TextFontStyle.med(size: context.textPx * 20)),
-            onTap: () {},
+            onTap: () {
+              context.pushNamed(ScreenNames.termsAndConditionScreen);
+            },
           ),
           ListTile(
             title: Text('Rate Us', style: TextFontStyle.med(size: context.textPx * 20)),

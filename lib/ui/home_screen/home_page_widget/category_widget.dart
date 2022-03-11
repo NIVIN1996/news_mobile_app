@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile_app/services/navigator/routes.dart';
+import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
 import '../../../utils/color/colors.dart';
@@ -25,7 +27,9 @@ class CategoryWidget extends StatelessWidget {
                 label: "Politics",
                 image: "assets/icons/politics.png",
                 gridColor: AppColor.green3,
-                onPress: () {},
+                onPress: () {
+                  context.pushNamed(ScreenNames.newsCategoryListScreen,arguments: "Politics");
+                },
               ),
               SizedBox(
                 width: context.widthPx * 20,
@@ -35,7 +39,9 @@ class CategoryWidget extends StatelessWidget {
                 label: 'Business',
                 image: "assets/icons/stats.png",
                 gridColor: AppColor.orange,
-                onPress: () {},
+                onPress: () {
+                  context.pushNamed(ScreenNames.newsCategoryListScreen,arguments: "Business");
+                },
               ),
             ],
           ),
@@ -50,7 +56,9 @@ class CategoryWidget extends StatelessWidget {
                 label: "Sports",
                 image: "assets/icons/sport.png",
                 gridColor: AppColor.primaryColor3,
-                onPress: () {},
+                onPress: () {
+                  context.pushNamed(ScreenNames.newsCategoryListScreen,arguments: "Sports");
+                },
               ),
               SizedBox(
                 width: context.widthPx * 20,
@@ -60,7 +68,10 @@ class CategoryWidget extends StatelessWidget {
                 label: "Entertainment",
                 image: "assets/icons/cinema.png",
                 gridColor: AppColor.yellow2,
-                onPress: () {},
+                onPress: () {
+                  context.pushNamed(ScreenNames.newsCategoryListScreen,arguments: "Entertainment");
+
+                },
               ),
             ],
           ),

@@ -3,9 +3,11 @@ import 'package:news_mobile_app/ui/change_password_screen/change_password_screen
 import 'package:news_mobile_app/ui/forgot_password_screen/forgot_password_screen.dart';
 import 'package:news_mobile_app/ui/login_screen/login_screen.dart';
 import 'package:news_mobile_app/ui/menu_screen/menu_screen.dart';
+import 'package:news_mobile_app/ui/terms_and_condition_screen/terms_and_condition_screen.dart';
 
 import '../../ui/home_screen/home_screen.dart';
 import '../../ui/language_screen/choose_language_screen.dart';
+import '../../ui/news_category_list_screen/news_category_list_screen.dart';
 import '../../ui/news_details_screen/news_details_screen.dart';
 import '../../ui/registration_screen/registration_screen.dart';
 
@@ -19,6 +21,8 @@ class ScreenNames {
   static const String homeScreen = "ui/home_screen/home_screen";
   static const String menuScreen = "ui/menu_screen/menu_screen";
   static const String newsDetailsScreen = "ui/news_details_screen/news_details_screen";
+  static const String termsAndConditionScreen = "ui/terms_and_condition_screen/terms_and_condition_screen";
+  static const String newsCategoryListScreen = "ui/news_category_list_screen/news_category_list_screen";
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -41,6 +45,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const MenuScreen());
     case ScreenNames.newsDetailsScreen:
       return MaterialPageRoute(builder: (context) => const NewsDetailsScreen());
+    case ScreenNames.termsAndConditionScreen:
+      return MaterialPageRoute(builder: (context) => const TermsAndConditionScreen());
+    case ScreenNames.newsCategoryListScreen:
+      return MaterialPageRoute(builder: (context) =>  NewsCategoryListScreen(category:  settings.arguments as String,));
 
     default:
       return MaterialPageRoute(builder: (context) => const HomeScreen());

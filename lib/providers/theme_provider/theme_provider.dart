@@ -4,7 +4,7 @@ import 'package:news_mobile_app/utils/color/colors.dart';
 import '../../utils/text_style/text_style.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.dark;
+  ThemeMode themeMode = ThemeMode.light;
 
   bool get isDarkMode => themeMode == ThemeMode.dark;
 
@@ -34,7 +34,6 @@ class MyThemes {
     ),
   );
   static final lightTheme = ThemeData(
-    primaryColorLight: Colors.grey,
     primarySwatch: Colors.grey,
     scaffoldBackgroundColor: Colors.white,
     backgroundColor: Colors.white,

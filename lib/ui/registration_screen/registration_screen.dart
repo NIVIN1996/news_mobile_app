@@ -46,7 +46,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           margin: EdgeInsets.all(context.widthPx * 20.0),
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
-              boxShadow: const [BoxShadow(color: AppColor.lightColor, blurRadius: 5.0)],
+              boxShadow: const [BoxShadow( blurRadius: 3.0)],
               borderRadius: BorderRadius.circular(context.widthPx * 10),
               border: Border.all(color: AppColor.hintColor)),
           child: Padding(
@@ -58,7 +58,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   padding: CommonPadding.paddingH10(context),
                   child: Text("News4U",
                       textAlign: TextAlign.right,
-                      style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 30)),
+                      style: TextFontStyle.med( size: context.textPx * 30)),
                 ),
                 TextFormWidget(
                   labelText: "Email",
@@ -88,7 +88,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     child: Text("Already Have an Account? Sign In",
                         textAlign: TextAlign.right,
-                        style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 14)),
+                        style: TextFontStyle.med( size: context.textPx * 14)),
                   ),
                 ),
               ],

@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
           margin: EdgeInsets.all(context.widthPx * 20.0),
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
-              boxShadow: const [BoxShadow(blurRadius: 5.0)],
+              boxShadow: const [BoxShadow(blurRadius: 3.0)],
               borderRadius: BorderRadius.circular(context.widthPx * 10),
               border: Border.all(color: AppColor.hintColor)),
           child: Padding(
@@ -100,6 +100,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
+          ),
+        ),
+      ),
+      bottomNavigationBar:Padding(
+        padding:  EdgeInsets.symmetric(horizontal:context.heightPx* 25.0,vertical: context.heightPx*20),
+        child: GestureDetector(
+          onTap: (){
+            context.pushNamed(ScreenNames.homeScreen);
+          },
+          child: Text(
+            'Skip',
+            textAlign: TextAlign.right,
+            style: TextFontStyle.med(size: context.textPx * 20),
           ),
         ),
       ),

@@ -20,10 +20,8 @@ class _NewsCategoryListScreenState extends State<NewsCategoryListScreen> {
         showFilter: true,
         label: widget.category,
         showNotification: true,
-        filterPress: (){
-      showDialog(
-        context: context,
-        builder: (BuildContext context) =>const PopUpWidget());
+        filterPress: () {
+          showDialog(context: context, builder: (BuildContext context) => const PopUpWidget());
         },
         backPress: () {
           Navigator.pop(context);
@@ -33,9 +31,9 @@ class _NewsCategoryListScreenState extends State<NewsCategoryListScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-         children: const [
-           NewsListWidget(),
-         ],
+          children: const [
+            NewsListWidget(),
+          ],
         ),
       ),
     );

@@ -38,6 +38,7 @@ dependencies:
   cached_network_image: ^3.2.0
   provider: ^6.0.2
   flutter_native_splash: ^2.1.0
+  flutter_rating_bar: ^4.0.0
 
 flutter_native_splash:
   color: "#ffffff"
@@ -70,6 +71,7 @@ flutter:
   assets:
     - assets/splash_icon/splash.json
     - assets/icons/
+    - assets/common/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

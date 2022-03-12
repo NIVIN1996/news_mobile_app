@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile_app/services/navigator/routes.dart';
+import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import '../../utils/text_style/text_style.dart';
 import 'appbar_size/appbar_size.dart';
@@ -58,7 +60,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           //! trailing padding
           padding: AppBarSize.tailingPadding(context),
           child: GestureDetector(
-            onTap: notificationPress ?? () {},
+            onTap: notificationPress ?? () {
+              context.pushNamed(ScreenNames.notificationScreen);
+            },
             //! Search icon widget
             child: Container(child: AppBarSize.notificationIconWidget(context)),
           ),

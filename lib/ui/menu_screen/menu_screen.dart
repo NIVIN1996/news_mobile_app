@@ -39,20 +39,28 @@ class _MenuScreenState extends State<MenuScreen> {
                 children: [
                   ListTile(
                     title: Text('Politics', style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(ScreenNames.newsCategoryListScreen,arguments: "Politics");
+                    },
                   ),
                   ListTile(
                     title: Text('Business', style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(ScreenNames.newsCategoryListScreen,arguments: "Business");
+                    },
                   ),
                   ListTile(
                     title: Text('Sports', style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(ScreenNames.newsCategoryListScreen,arguments: "Sports");
+                    },
                   ),
                   ListTile(
                     title: Text('Entertainment',
                         style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(ScreenNames.newsCategoryListScreen,arguments: "Entertainment");
+                    },
                   ),
                 ],
               ),
@@ -60,7 +68,9 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           ListTile(
             title: Text('Profile Settings', style: TextFontStyle.med(size: context.textPx * 20)),
-            onTap: () {},
+            onTap: () {
+              context.pushNamed(ScreenNames.profileScreen);
+            },
           ),
           ListTile(
             title: Row(
@@ -86,7 +96,9 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           ListTile(
             title: Text('Rate Us', style: TextFontStyle.med(size: context.textPx * 20)),
-            onTap: () {},
+            onTap: () {
+              context.pushNamed(ScreenNames.rateUsScreen);
+            },
           ),
         ],
       ),

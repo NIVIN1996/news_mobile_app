@@ -22,7 +22,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.widthPx * 25.0),
+            padding: EdgeInsets.symmetric(horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
             child: Text(
               "Highlights",
               textAlign: TextAlign.start,

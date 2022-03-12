@@ -67,9 +67,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
                     children: [
                       GestureDetector(
                           onTap: () {
-                            setState(() {
-                              selectBookmark = !selectBookmark;
-                            });
+
                           },
                           child: Padding(
                             padding: EdgeInsets.only(right: context.widthPx * 10.0),

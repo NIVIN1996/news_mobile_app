@@ -4,7 +4,6 @@ import 'package:news_mobile_app/ui/language_screen/choose_language_screen.dart';
 
 import '../../utils/text_style/text_style.dart';
 
-import '../login_screen/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

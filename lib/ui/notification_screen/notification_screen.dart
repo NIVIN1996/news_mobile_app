@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
-
-import '../../services/navigator/routes.dart';
 import '../../widgets/app_bar_widget/common_app_bar_widget.dart';
 import 'notification_widget/notification_widget.dart';
 

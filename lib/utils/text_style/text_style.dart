@@ -17,7 +17,7 @@ class TextFontStyle {
         color: color, height: height, fontWeight: FontWeight.w400, fontStyle: FontStyle.normal, fontSize: size);
   }
 
-  static TextStyle normal({Color color = AppColor.black, required double size}) {
+  static TextStyle normal({Color? color, required double size}) {
     return TextStyle(
       color: color,
       height: 1.2,

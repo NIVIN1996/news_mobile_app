@@ -36,7 +36,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           margin: EdgeInsets.all(context.widthPx * 20.0),
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
-              boxShadow: const [BoxShadow(color: AppColor.lightColor, blurRadius: 5.0)],
+              boxShadow: const [BoxShadow(blurRadius: 3.0)],
               borderRadius: BorderRadius.circular(context.widthPx * 10),
               border: Border.all(color: AppColor.hintColor)),
           child: Padding(

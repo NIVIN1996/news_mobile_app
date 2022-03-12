@@ -3,12 +3,15 @@ import 'package:news_mobile_app/ui/change_password_screen/change_password_screen
 import 'package:news_mobile_app/ui/forgot_password_screen/forgot_password_screen.dart';
 import 'package:news_mobile_app/ui/login_screen/login_screen.dart';
 import 'package:news_mobile_app/ui/menu_screen/menu_screen.dart';
+import 'package:news_mobile_app/ui/notification_screen/notification_screen.dart';
+import 'package:news_mobile_app/ui/rate_us_screen/rate_us_screen.dart';
 import 'package:news_mobile_app/ui/terms_and_condition_screen/terms_and_condition_screen.dart';
 
 import '../../ui/home_screen/home_screen.dart';
 import '../../ui/language_screen/choose_language_screen.dart';
 import '../../ui/news_category_list_screen/news_category_list_screen.dart';
 import '../../ui/news_details_screen/news_details_screen.dart';
+import '../../ui/profile_screen/profile_screen.dart';
 import '../../ui/registration_screen/registration_screen.dart';
 
 class ScreenNames {
@@ -23,6 +26,9 @@ class ScreenNames {
   static const String newsDetailsScreen = "ui/news_details_screen/news_details_screen";
   static const String termsAndConditionScreen = "ui/terms_and_condition_screen/terms_and_condition_screen";
   static const String newsCategoryListScreen = "ui/news_category_list_screen/news_category_list_screen";
+  static const String notificationScreen = "ui/notification_screen/notification_screen";
+  static const String rateUsScreen = "ui/rate_us_screen/rate_us_screen";
+  static const String profileScreen = "ui/profile_screen/profile_screen";
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -49,6 +55,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const TermsAndConditionScreen());
     case ScreenNames.newsCategoryListScreen:
       return MaterialPageRoute(builder: (context) =>  NewsCategoryListScreen(category:  settings.arguments as String,));
+    case ScreenNames.rateUsScreen:
+      return MaterialPageRoute(builder: (context) => const RateUsScreen());
+    case ScreenNames.profileScreen:
+      return MaterialPageRoute(builder: (context) => const ProfileScreen());
+    case ScreenNames.notificationScreen:
+      return MaterialPageRoute(builder: (context) => const NotificationScreen());
 
     default:
       return MaterialPageRoute(builder: (context) => const HomeScreen());

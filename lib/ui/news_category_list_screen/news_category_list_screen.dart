@@ -32,7 +32,7 @@ class _NewsCategoryListScreenState extends State<NewsCategoryListScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: const [
-            NewsListWidget(),
+            // NewsListWidget(),
           ],
         ),
       ),

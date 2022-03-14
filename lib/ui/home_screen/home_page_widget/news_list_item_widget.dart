@@ -6,13 +6,23 @@ import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
 import '../../../utils/color/colors.dart';
 import '../../../utils/text_style/text_style.dart';
+import '../../../widgets/shimmer_widget/shimmer_widget.dart';
 
 class NewsListItemWidget extends StatefulWidget {
   final int index;
+  final String imageUrl;
+  final String title;
+  final String author;
+  final String subTitle;
+  final String publishedAt;
 
   const NewsListItemWidget({
     Key? key,
     required this.index,
+    required this.imageUrl,
+    required this.title,
+    required this.subTitle,
+    required this.publishedAt, required this.author,
   }) : super(key: key);
 
   @override
@@ -42,7 +52,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                 child: Padding(
                   padding: EdgeInsets.all(context.widthPx * 10.0),
                   child: CachedNetworkImage(
-                    imageUrl: "https://picsum.photos/200/300",
+                    imageUrl: widget.imageUrl,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(context.widthPx * 10),
@@ -52,11 +62,14 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                         ),
                       ),
                     ),
+                    placeholder: (context, url) => const ShimmerWidget(
+                      radius: 10,
+                    ),
                     errorWidget: (context, url, error) => Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(context.widthPx * 20),
                         image: const DecorationImage(
-                          image: AssetImage('assets/common/no_img.jpg'),
+                          image: AssetImage('assets/common/no_img.png'),
                           fit: BoxFit.fitWidth,
                         ),
                       ),
@@ -79,7 +92,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Sports",
+                            widget.author,
                             textAlign: TextAlign.start,
                             style: TextFontStyle.med(size: context.textPx * 16),
                           ),
@@ -95,7 +108,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                       ),
                     ),
                     Text(
-                      "Bairstow hundred leads England recovery against West Indies on Day 1",
+                      widget.title,
                       textAlign: TextAlign.start,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
@@ -115,7 +128,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                                 ),
                               ),
                               TextSpan(
-                                text: "12/03/2022",
+                                text: widget.publishedAt,
                                 style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 14),
                               ),
                             ],

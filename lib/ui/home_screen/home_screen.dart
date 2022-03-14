@@ -4,6 +4,9 @@ import 'package:news_mobile_app/utils/color/colors.dart';
 import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
+import '../../models/top_news_headline_model/top_news_headline_model.dart';
+import '../../services/api_services/news_list_services/news_list_services.dart';
+import '../../utils/static/enums.dart';
 import '../../utils/text_style/text_style.dart';
 import '../../widgets/app_bar_widget/app_bar_widget.dart';
 import '../../widgets/popup_widget/popup_widget.dart';
@@ -19,6 +22,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  TopHeadlineNewsModel? topRelatedListModel;
+  ApiStatus topRelatedListStatus = ApiStatus.none;
+  String topRelatedListApiError = "";
+  @override
+  void initState() {
+    _getTopHeadlineNews();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,11 +98,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const CategoryWidget(),
-              const NewsListWidget()
+               NewsListWidget(apiError:topRelatedListApiError ,status:topRelatedListStatus ,model:topRelatedListModel ,retryCallBack:_getTopHeadlineNews ,isDelivered:true ,)
             ],
           ),
         ),
       ),
     );
+  }
+  _getTopHeadlineNews() async {
+    setState(() {
+      topRelatedListApiError = "";
+      topRelatedListStatus = ApiStatus.loading;
+    });
+
+    topRelatedListModel = await NewsListingService.getTopNewsHeadlines();
+
+    setState(() {
+      if (topRelatedListModel!.status =="ok") {
+        topRelatedListStatus = ApiStatus.success;
+      } else {
+        topRelatedListApiError = topRelatedListModel!.status;
+        topRelatedListStatus = ApiStatus.error;
+      }
+    });
   }
 }

@@ -54,8 +54,8 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                       ? NewsListItemWidget(
                           title: widget.model!.articles[index].title,
                           imageUrl: widget.model!.articles[index].urlToImage,
-                          publishedAt: widget.model!.articles[index].publishedAt.toString(),
-                          subTitle: widget.model!.articles[index].description,
+                          publishedAt: widget.model!.articles[index].publishedAt,
+                          subTitle: widget.model!.articles[index].content,
                           index: index,
                           author: widget.model!.articles[index].source.name,
                         )

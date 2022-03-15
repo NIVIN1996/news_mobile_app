@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:news_mobile_app/models/news_details_model/news_details_navigation_params.dart';
 import 'package:news_mobile_app/services/navigator/routes.dart';
 import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
@@ -8,13 +10,14 @@ import '../../../utils/color/colors.dart';
 import '../../../utils/text_style/text_style.dart';
 import '../../../widgets/shimmer_widget/shimmer_widget.dart';
 
+
 class NewsListItemWidget extends StatefulWidget {
   final int index;
   final String imageUrl;
   final String title;
   final String author;
   final String subTitle;
-  final String publishedAt;
+  final DateTime publishedAt;
 
   const NewsListItemWidget({
     Key? key,
@@ -32,11 +35,27 @@ class NewsListItemWidget extends StatefulWidget {
 
 class _NewsListItemWidgetState extends State<NewsListItemWidget> {
   bool selectBookmark = false;
+  DateFormat dateFormat = DateFormat("dd-MM-yyyy");
+
+
   @override
   Widget build(BuildContext context) {
+    String date = dateFormat.format(widget.publishedAt);
+    String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
+    print(date);
+    print(formattedTime);
     return GestureDetector(
       onTap: () {
-        context.pushNamed(ScreenNames.newsDetailsScreen);
+        print(widget.index);
+        context.pushNamed(
+          ScreenNames.newsDetailsScreen,
+          arguments: NewsDetailsNavigationParameters(
+              author: widget.author,
+              imageUrl: widget.imageUrl,
+              publishedAt: date + " "+ formattedTime,
+              subTitle: widget.subTitle,
+              title: widget.title),
+        );
       },
       child: Card(
         elevation: 5,
@@ -129,7 +148,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                                 ),
                               ),
                               TextSpan(
-                                text: widget.publishedAt,
+                                text: date +" "+ formattedTime,
                                 style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 14),
                               ),
                             ],

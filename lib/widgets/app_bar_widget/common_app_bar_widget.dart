@@ -52,9 +52,7 @@ class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
                 //! trailing padding
                 padding: AppBarSize.tailingPadding(context),
                 child: GestureDetector(
-                  onTap: filterPress ?? () {
-
-                  },
+                  onTap: filterPress ?? () {},
                   //! Search icon widget
                   child: Container(child: AppBarSize.filterIconWidget(context)),
                 ),
@@ -65,7 +63,7 @@ class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
                 //! trailing padding
                 padding: AppBarSize.tailingPadding(context),
                 child: GestureDetector(
-                  onTap:  () {
+                  onTap: () {
                     context.pushNamed(ScreenNames.notificationScreen);
                   },
                   //! Search icon widget

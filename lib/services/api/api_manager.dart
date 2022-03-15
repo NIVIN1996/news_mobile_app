@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
-
 class ApiManager {
   String url;
   Object? body;
@@ -21,14 +20,14 @@ class ApiManager {
 
   ApiManager(
       {required this.url,
-        this.body,
-        this.timeOut = 15,
-        this.commonErrorMsg,
-        this.formatErrorMsg,
-        this.socketErrorMsg,
-        this.routingMsg,
-        this.routeIf401 = true,
-        this.timeoutErrorMsg}) {
+      this.body,
+      this.timeOut = 15,
+      this.commonErrorMsg,
+      this.formatErrorMsg,
+      this.socketErrorMsg,
+      this.routingMsg,
+      this.routeIf401 = true,
+      this.timeoutErrorMsg}) {
     //default error messages for the api errors. If need to change to a custom error message, they can be changed from service
     commonErrorMsg ??= 'Something went wrong.';
     formatErrorMsg ??= 'Something went wrong.';
@@ -36,7 +35,6 @@ class ApiManager {
     routingMsg ??= 'Please log in to continue.';
     socketErrorMsg ??= 'Failed to connect to internet. Please check your internet connection.';
     timeoutErrorMsg ??= 'Your connection has timed out.';
-
   }
 
   Map<String, String> _getHeaders() {

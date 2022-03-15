@@ -66,9 +66,7 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
                   Row(
                     children: [
                       GestureDetector(
-                          onTap: () {
-
-                          },
+                          onTap: () {},
                           child: Padding(
                             padding: EdgeInsets.only(right: context.widthPx * 10.0),
                             child: Icon(Icons.share, color: AppColor.grey5, size: context.widthPx * 30),

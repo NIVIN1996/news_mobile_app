@@ -22,7 +22,8 @@ class NewsListItemWidget extends StatefulWidget {
     required this.imageUrl,
     required this.title,
     required this.subTitle,
-    required this.publishedAt, required this.author,
+    required this.publishedAt,
+    required this.author,
   }) : super(key: key);
 
   @override

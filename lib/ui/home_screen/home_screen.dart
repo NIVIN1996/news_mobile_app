@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _getTopHeadlineNews();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,13 +99,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const CategoryWidget(),
-               NewsListWidget(apiError:topRelatedListApiError ,status:topRelatedListStatus ,model:topRelatedListModel ,retryCallBack:_getTopHeadlineNews ,isDelivered:true ,)
+              NewsListWidget(
+                apiError: topRelatedListApiError,
+                status: topRelatedListStatus,
+                model: topRelatedListModel,
+                retryCallBack: _getTopHeadlineNews,
+                isDelivered: true,
+              )
             ],
           ),
         ),
       ),
     );
   }
+
   _getTopHeadlineNews() async {
     setState(() {
       topRelatedListApiError = "";
@@ -114,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
     topRelatedListModel = await NewsListingService.getTopNewsHeadlines();
 
     setState(() {
-      if (topRelatedListModel!.status =="ok") {
+      if (topRelatedListModel!.status == "ok") {
         topRelatedListStatus = ApiStatus.success;
       } else {
         topRelatedListApiError = topRelatedListModel!.status;

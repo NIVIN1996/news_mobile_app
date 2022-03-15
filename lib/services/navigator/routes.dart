@@ -8,14 +8,12 @@ import 'package:news_mobile_app/ui/rate_us_screen/rate_us_screen.dart';
 import 'package:news_mobile_app/ui/terms_and_condition_screen/terms_and_condition_screen.dart';
 
 import '../../models/category_model/category_model_navigation_params.dart';
-import '../../models/top_news_headline_model/top_news_headline_model.dart';
 import '../../ui/home_screen/home_screen.dart';
 import '../../ui/language_screen/choose_language_screen.dart';
 import '../../ui/news_category_list_screen/news_category_list_screen.dart';
 import '../../ui/news_details_screen/news_details_screen.dart';
 import '../../ui/profile_screen/profile_screen.dart';
 import '../../ui/registration_screen/registration_screen.dart';
-import '../../utils/static/enums.dart';
 
 class ScreenNames {
   static String currentRoute = "/";

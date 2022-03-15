@@ -101,13 +101,15 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 image: "assets/icons/sport.png",
                 gridColor: AppColor.primaryColor3,
                 onPress: () {
-                  context.pushNamed(ScreenNames.newsCategoryListScreen,
-                      arguments: CategoryNewsNavigationParameters(
-                          category: "Sports",
-                          callBack: _getSportsNews,
-                          categoryListModel: sportsListModel,
-                          categoryNewsStatus: sportsListStatus,
-                          errorStatus: sportsListApiError),);
+                  context.pushNamed(
+                    ScreenNames.newsCategoryListScreen,
+                    arguments: CategoryNewsNavigationParameters(
+                        category: "Sports",
+                        callBack: _getSportsNews,
+                        categoryListModel: sportsListModel,
+                        categoryNewsStatus: sportsListStatus,
+                        errorStatus: sportsListApiError),
+                  );
                 },
               ),
               SizedBox(

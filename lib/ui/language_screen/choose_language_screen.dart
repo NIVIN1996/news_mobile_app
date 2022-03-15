@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/services/navigator/routes.dart';
 import 'package:news_mobile_app/utils/navigation/navigation.dart';
@@ -34,7 +33,7 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
           margin: EdgeInsets.all(context.widthPx * 20.0),
           decoration: BoxDecoration(
               color: Theme.of(context).backgroundColor,
-              boxShadow: const [BoxShadow( blurRadius: 3.0)],
+              boxShadow: const [BoxShadow(blurRadius: 3.0)],
               borderRadius: BorderRadius.circular(context.widthPx * 10),
               border: Border.all(color: AppColor.hintColor)),
           child: Column(
@@ -58,10 +57,10 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
           ),
         ),
       ),
-      bottomNavigationBar:Padding(
-        padding:  EdgeInsets.symmetric(horizontal:context.heightPx* 25.0,vertical: context.heightPx*20),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.heightPx * 25.0, vertical: context.heightPx * 20),
         child: GestureDetector(
-          onTap: (){
+          onTap: () {
             context.pushNamed(ScreenNames.login);
           },
           child: Text(
@@ -82,8 +81,8 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
         groupValue: _value2,
         title: Text(
           ' ${_group[i].text}',
-          style:
-              TextFontStyle.med(color: _group[i].selected ? AppColor.yellow : AppColor.grey3, size: context.textPx * 20),
+          style: TextFontStyle.med(
+              color: _group[i].selected ? AppColor.yellow : AppColor.grey3, size: context.textPx * 20),
         ),
         selected: _group[i].selected,
         onChanged: (int? val) {

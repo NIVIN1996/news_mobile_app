@@ -60,9 +60,10 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           //! trailing padding
           padding: AppBarSize.tailingPadding(context),
           child: GestureDetector(
-            onTap: notificationPress ?? () {
-              context.pushNamed(ScreenNames.notificationScreen);
-            },
+            onTap: notificationPress ??
+                () {
+                  context.pushNamed(ScreenNames.notificationScreen);
+                },
             //! Search icon widget
             child: Container(child: AppBarSize.notificationIconWidget(context)),
           ),

@@ -17,7 +17,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
         showFilter: false,
         label: "",
         showNotification: false,
-
         backPress: () {
           Navigator.pop(context);
         },
@@ -25,9 +24,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: const [
-            NotificationWidget()
-          ],
+          children: const [NotificationWidget()],
         ),
       ),
     );

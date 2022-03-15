@@ -50,21 +50,24 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                 itemCount: widget.status == ApiStatus.success ? widget.model!.articles.length : 5,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return  widget.status == ApiStatus.success
-                      ?  NewsListItemWidget(
-                    title: widget.model!.articles[index].title,
-                    imageUrl: widget.model!.articles[index].urlToImage,
-                    publishedAt: widget.model!.articles[index].publishedAt.toString(),
-                    subTitle: widget.model!.articles[index].description,
-                    index: index, author: widget.model!.articles[index].source.name,
-                  ):Padding(
-                    padding: EdgeInsets.symmetric(horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
-                    child: ShimmerWidget(
-                      height: context.heightPx*140,
-                      width: context.widthPx*100,
-                      radius: 10,
-                    ),
-                  );
+                  return widget.status == ApiStatus.success
+                      ? NewsListItemWidget(
+                          title: widget.model!.articles[index].title,
+                          imageUrl: widget.model!.articles[index].urlToImage,
+                          publishedAt: widget.model!.articles[index].publishedAt.toString(),
+                          subTitle: widget.model!.articles[index].description,
+                          index: index,
+                          author: widget.model!.articles[index].source.name,
+                        )
+                      : Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
+                          child: ShimmerWidget(
+                            height: context.heightPx * 140,
+                            width: context.widthPx * 100,
+                            radius: 10,
+                          ),
+                        );
                 }),
           ),
         ],

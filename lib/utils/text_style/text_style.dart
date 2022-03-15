@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class TextFontStyle {
   static TextStyle lightFont({required Color color, required double size}) {
     return TextStyle(

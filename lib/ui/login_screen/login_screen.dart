@@ -103,10 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      bottomNavigationBar:Padding(
-        padding:  EdgeInsets.symmetric(horizontal:context.heightPx* 25.0,vertical: context.heightPx*20),
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.heightPx * 25.0, vertical: context.heightPx * 20),
         child: GestureDetector(
-          onTap: (){
+          onTap: () {
             context.pushNamed(ScreenNames.homeScreen);
           },
           child: Text(

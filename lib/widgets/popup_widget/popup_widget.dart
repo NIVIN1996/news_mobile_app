@@ -24,55 +24,48 @@ class PopUpWidget extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextFontStyle.semiBold(size: context.textPx * 20),
               ),
-
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical:context.heightPx* 15),
+                  margin: EdgeInsets.symmetric(vertical: context.heightPx * 15),
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.grey5)
-
-                  ),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: AppColor.grey5)),
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal:context.widthPx* 10.0,vertical:context.heightPx* 10),
+                    padding: EdgeInsets.symmetric(horizontal: context.widthPx * 10.0, vertical: context.heightPx * 10),
                     child: Text(
                       "Sort By Latest news",
                       textAlign: TextAlign.start,
-                      style: TextFontStyle.regular(size: context.textPx * 20,),
+                      style: TextFontStyle.regular(
+                        size: context.textPx * 20,
+                      ),
                     ),
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical:context.heightPx* 5),
+                  margin: EdgeInsets.symmetric(vertical: context.heightPx * 5),
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColor.grey5)
-
-                  ),
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(color: AppColor.grey5)),
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal:context.widthPx* 10.0,vertical:context.heightPx* 10),
+                    padding: EdgeInsets.symmetric(horizontal: context.widthPx * 10.0, vertical: context.heightPx * 10),
                     child: Text(
                       "Sort By Old news",
                       textAlign: TextAlign.start,
-                      style: TextFontStyle.regular(size: context.textPx * 20,),
+                      style: TextFontStyle.regular(
+                        size: context.textPx * 20,
+                      ),
                     ),
                   ),
                 ),
               ),
-
-
-
-
             ],
           ),
         ),

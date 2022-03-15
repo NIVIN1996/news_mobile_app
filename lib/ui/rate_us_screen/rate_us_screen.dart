@@ -14,7 +14,7 @@ class RateUsScreen extends StatefulWidget {
 }
 
 class _RateUsScreenState extends State<RateUsScreen> {
-  String rate ="";
+  String rate = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,14 +53,12 @@ class _RateUsScreenState extends State<RateUsScreen> {
                     ),
                     onRatingUpdate: (rating) {
                       setState(() {
-                        rate=rating.toString();
+                        rate = rating.toString();
                       });
-
-
                     },
                   ),
                 ),
-            Text(rate,style: TextFontStyle.med(size: context.textPx * 20)),
+                Text(rate, style: TextFontStyle.med(size: context.textPx * 20)),
                 Padding(
                   padding: CommonPadding.paddingH10(context),
                   child: CustomButton(

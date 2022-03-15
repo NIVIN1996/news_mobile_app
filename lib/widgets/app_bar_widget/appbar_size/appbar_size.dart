@@ -85,11 +85,10 @@ class AppBarSize {
 
   static Widget backIconWidget(BuildContext context) {
     return Transform.scale(
-      scale: iconScale(),
-      child:  const Icon(
-        Icons.arrow_back_ios_rounded,
-      )
-    );
+        scale: iconScale(),
+        child: const Icon(
+          Icons.arrow_back_ios_rounded,
+        ));
   }
 
   static Widget filterIconWidget(BuildContext context) {

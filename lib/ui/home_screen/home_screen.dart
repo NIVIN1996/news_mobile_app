@@ -56,7 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     flex: 8,
                     child: Container(
-                      // height: MediaQuery.of(context).size.height * 0.10,
                       margin: EdgeInsets.symmetric(horizontal: context.widthPx * 25.0, vertical: context.heightPx * 20),
                       decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(10)),

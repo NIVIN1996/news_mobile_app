@@ -30,7 +30,6 @@ class CategoryItemWidget extends StatelessWidget {
         alignment: Alignment.center,
         height: (context.screenWidth - context.widthPx * 100) / (context.screenWidth > 600 ? 2.13 : 2.5),
         width: (context.screenWidth - context.widthPx * 40) / (context.screenWidth > 600 ? 2.13 : 2.2),
-        // margin: EdgeInsets.only(left: commonHPadding(context)/2,right: commonHPadding(context)/2, top: context.widthPx * 10,bottom: context.widthPx * 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

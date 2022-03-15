@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile_app/models/news_details_model/news_details_navigation_params.dart';
 import 'package:news_mobile_app/ui/change_password_screen/change_password_screen.dart';
 import 'package:news_mobile_app/ui/forgot_password_screen/forgot_password_screen.dart';
 import 'package:news_mobile_app/ui/login_screen/login_screen.dart';
@@ -51,7 +52,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case ScreenNames.menuScreen:
       return MaterialPageRoute(builder: (context) => const MenuScreen());
     case ScreenNames.newsDetailsScreen:
-      return MaterialPageRoute(builder: (context) => const NewsDetailsScreen());
+      return MaterialPageRoute(
+          builder: (context) => NewsDetailsScreen(
+            navigationParameters: settings.arguments as NewsDetailsNavigationParameters,
+              ));
     case ScreenNames.termsAndConditionScreen:
       return MaterialPageRoute(builder: (context) => const TermsAndConditionScreen());
     case ScreenNames.newsCategoryListScreen:

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:news_mobile_app/widgets/shimmer_widget/shimmer_widget.dart';
 
-import '../../../models/top_news_headline_model/top_news_headline_model.dart';
-import '../../../utils/static/enums.dart';
-import '../../../utils/text_style/text_style.dart';
+import '../../../../models/top_news_headline_model/top_news_headline_model.dart';
+import '../../../../utils/static/enums.dart';
+import '../../../../utils/text_style/text_style.dart';
 import 'news_list_item_widget.dart';
 
 class NewsListWidget extends StatefulWidget {
@@ -16,6 +16,7 @@ class NewsListWidget extends StatefulWidget {
   const NewsListWidget({
     Key? key,
     this.model,
+
     required this.status,
     required this.retryCallBack,
     required this.isDelivered,

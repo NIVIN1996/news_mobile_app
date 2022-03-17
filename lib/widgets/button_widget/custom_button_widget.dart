@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
   final Color color;
   final double height;
   final Color disabledColor;
+  final Color textColor;
   final double radius;
   final double textSize;
 
@@ -23,7 +24,7 @@ class CustomButton extends StatelessWidget {
       this.height = 60,
       this.radius = 10,
       this.textSize = 20,
-      this.onPress})
+      this.onPress, this.textColor =AppColor.black})
       : super(key: key);
 
   @override
@@ -42,7 +43,7 @@ class CustomButton extends StatelessWidget {
                       ? disabledColor
                       : (onPress == null)
                           ? disabledColor
-                          : AppColor.black,
+                          : textColor,
                   size: context.textPx * textSize),
             ),
             style: TextButton.styleFrom(

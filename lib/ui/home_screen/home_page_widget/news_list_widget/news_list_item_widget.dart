@@ -6,10 +6,9 @@ import 'package:news_mobile_app/services/navigator/routes.dart';
 import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
-import '../../../utils/color/colors.dart';
-import '../../../utils/text_style/text_style.dart';
-import '../../../widgets/shimmer_widget/shimmer_widget.dart';
-
+import '../../../../utils/color/colors.dart';
+import '../../../../utils/text_style/text_style.dart';
+import '../../../../widgets/shimmer_widget/shimmer_widget.dart';
 
 class NewsListItemWidget extends StatefulWidget {
   final int index;
@@ -37,22 +36,19 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
   bool selectBookmark = false;
   DateFormat dateFormat = DateFormat("dd-MM-yyyy");
 
-
   @override
   Widget build(BuildContext context) {
     String date = dateFormat.format(widget.publishedAt);
     String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
-    print(date);
-    print(formattedTime);
+
     return GestureDetector(
       onTap: () {
-        print(widget.index);
         context.pushNamed(
           ScreenNames.newsDetailsScreen,
           arguments: NewsDetailsNavigationParameters(
               author: widget.author,
               imageUrl: widget.imageUrl,
-              publishedAt: date + " "+ formattedTime,
+              publishedAt: date + " " + formattedTime,
               subTitle: widget.subTitle,
               title: widget.title),
         );
@@ -111,10 +107,14 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            widget.author,
-                            textAlign: TextAlign.start,
-                            style: TextFontStyle.med(size: context.textPx * 16),
+                          Expanded(
+                            child: Text(
+                              widget.author,
+                              textAlign: TextAlign.start,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextFontStyle.med(size: context.textPx * 16),
+                            ),
                           ),
                           GestureDetector(
                               onTap: () {
@@ -148,7 +148,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                                 ),
                               ),
                               TextSpan(
-                                text: date +" "+ formattedTime,
+                                text: date + " " + formattedTime,
                                 style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 14),
                               ),
                             ],

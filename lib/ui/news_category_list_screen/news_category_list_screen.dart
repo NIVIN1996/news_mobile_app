@@ -4,7 +4,7 @@ import '../../models/category_model/category_model_navigation_params.dart';
 
 import '../../widgets/app_bar_widget/common_app_bar_widget.dart';
 import '../../widgets/popup_widget/popup_widget.dart';
-import '../home_screen/home_page_widget/news_list_widget.dart';
+import '../home_screen/home_page_widget/news_list_widget/news_list_widget.dart';
 
 class NewsCategoryListScreen extends StatefulWidget {
   final CategoryNewsNavigationParameters navigationParameters;

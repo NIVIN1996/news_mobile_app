@@ -3,11 +3,11 @@ import 'package:news_mobile_app/services/navigator/routes.dart';
 import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
-import '../../../models/category_model/category_model_navigation_params.dart';
-import '../../../models/top_news_headline_model/top_news_headline_model.dart';
-import '../../../services/api_services/news_list_services/news_list_services.dart';
-import '../../../utils/color/colors.dart';
-import '../../../utils/static/enums.dart';
+import '../../../../models/category_model/category_model_navigation_params.dart';
+import '../../../../models/top_news_headline_model/top_news_headline_model.dart';
+import '../../../../services/api_services/news_list_services/news_list_services.dart';
+import '../../../../utils/color/colors.dart';
+import '../../../../utils/static/enums.dart';
 import 'category_item_widget.dart';
 
 class CategoryWidget extends StatefulWidget {

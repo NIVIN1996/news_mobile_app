@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
-import '../../services/navigator/routes.dart';
-import '../../utils/text_style/text_style.dart';
+
+import '../../../utils/text_style/text_style.dart';
+import '../../navigation/routes.dart';
 import 'appbar_size/appbar_size.dart';
 
 class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  final bool showFilter;
   final bool showNotification;
   final String label;
   final AppBar appBar;
   final void Function()? backPress;
-  final void Function()? filterPress;
   final void Function()? notificationPress;
 
   const CommonAppBarWidget({
@@ -19,10 +18,10 @@ class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
     required this.appBar,
     this.backPress,
     this.notificationPress,
-    this.showFilter = true,
+
     this.showNotification = true,
     this.label = "",
-    this.filterPress,
+
   }) : super(key: key);
 
   @override
@@ -47,17 +46,7 @@ class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
         );
       }),
       actions: [
-        showFilter == true
-            ? Padding(
-                //! trailing padding
-                padding: AppBarSize.tailingPadding(context),
-                child: GestureDetector(
-                  onTap: filterPress ?? () {},
-                  //! Search icon widget
-                  child: Container(child: AppBarSize.filterIconWidget(context)),
-                ),
-              )
-            : const SizedBox(),
+
         showNotification == true
             ? Padding(
                 //! trailing padding

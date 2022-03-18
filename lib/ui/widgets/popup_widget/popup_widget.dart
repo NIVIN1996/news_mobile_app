@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/color/colors.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
-import '../../models/category_model/category_model_navigation_params.dart';
-import '../../utils/text_style/text_style.dart';
+import '../../../utils/text_style/text_style.dart';
+
 
 class PopUpWidget extends StatelessWidget {
   const PopUpWidget({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../widgets/app_bar_widget/common_app_bar_widget.dart';
+import 'package:news_mobile_app/ui/widgets/app_bar_widget/common_app_bar_widget.dart';
+
 import 'notification_widget/notification_widget.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBarWidget(
-        showFilter: false,
+
         label: "",
         showNotification: false,
         backPress: () {

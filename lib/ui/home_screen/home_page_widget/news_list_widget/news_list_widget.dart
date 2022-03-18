@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile_app/ui/widgets/shimmer_widget/shimmer_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
-import 'package:news_mobile_app/widgets/shimmer_widget/shimmer_widget.dart';
+
 
 import '../../../../models/top_news_headline_model/top_news_headline_model.dart';
 import '../../../../utils/static/enums.dart';

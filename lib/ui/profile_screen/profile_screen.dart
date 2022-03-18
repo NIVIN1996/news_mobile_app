@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile_app/ui/widgets/app_bar_widget/common_app_bar_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
 import '../../utils/text_style/text_style.dart';
-import '../../widgets/app_bar_widget/common_app_bar_widget.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -16,7 +17,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBarWidget(
-        showFilter: false,
         label: "",
         showNotification: false,
         backPress: () {

@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/services/navigator/routes.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/navigation/routes.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
 import '../../../utils/color/colors.dart';

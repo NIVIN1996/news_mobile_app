@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/services/navigator/routes.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/navigation/routes.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
-import '../../utils/text_style/text_style.dart';
+
+import '../../../utils/text_style/text_style.dart';
 import 'appbar_size/appbar_size.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -47,15 +48,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         );
       }),
       actions: [
-        Padding(
-          //! trailing padding
-          padding: AppBarSize.tailingPadding(context),
-          child: GestureDetector(
-            onTap: filterPress ?? () {},
-            //! Search icon widget
-            child: Container(child: AppBarSize.filterIconWidget(context)),
-          ),
-        ),
+
         Padding(
           //! trailing padding
           padding: AppBarSize.tailingPadding(context),

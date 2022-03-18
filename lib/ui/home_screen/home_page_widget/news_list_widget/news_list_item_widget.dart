@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:news_mobile_app/models/news_details_model/news_details_navigation_params.dart';
-import 'package:news_mobile_app/services/navigator/routes.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/navigation/routes.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/widgets/shimmer_widget/shimmer_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
 import '../../../../utils/color/colors.dart';
 import '../../../../utils/text_style/text_style.dart';
-import '../../../../widgets/shimmer_widget/shimmer_widget.dart';
+
 
 class NewsListItemWidget extends StatefulWidget {
   final int index;

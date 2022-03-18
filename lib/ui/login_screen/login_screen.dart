@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/services/navigator/routes.dart';
+import 'package:news_mobile_app/ui/navigation/routes.dart';
+import 'package:news_mobile_app/ui/widgets/button_widget/custom_button_widget.dart';
+import 'package:news_mobile_app/ui/widgets/text_form_widget/text_form_widget.dart';
 import 'package:news_mobile_app/utils/color/colors.dart';
 import 'package:news_mobile_app/utils/common_padding/common_padding.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import '../../utils/text_style/text_style.dart';
-import '../../widgets/button_widget/custom_button_widget.dart';
-import '../../widgets/text_form_widget/text_form_widget.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
+import '../../../utils/color/colors.dart';
+import '../../../utils/text_style/text_style.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
+
+
+
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

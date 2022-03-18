@@ -9,12 +9,14 @@ import 'package:news_mobile_app/ui/rate_us_screen/rate_us_screen.dart';
 import 'package:news_mobile_app/ui/terms_and_condition_screen/terms_and_condition_screen.dart';
 
 import '../../models/category_model/category_model_navigation_params.dart';
-import '../../ui/home_screen/home_screen.dart';
-import '../../ui/language_screen/choose_language_screen.dart';
-import '../../ui/news_category_list_screen/news_category_list_screen.dart';
-import '../../ui/news_details_screen/news_details_screen.dart';
-import '../../ui/profile_screen/profile_screen.dart';
-import '../../ui/registration_screen/registration_screen.dart';
+import '../../models/country_based_news_model.dart';
+import '../home_screen/home_screen.dart';
+import '../language_screen/choose_language_screen.dart';
+import '../news_category_list_screen/news_category_list_screen.dart';
+import '../news_country_list_screen/news_country_list_screen.dart';
+import '../news_details_screen/news_details_screen.dart';
+import '../profile_screen/profile_screen.dart';
+import '../registration_screen/registration_screen.dart';
 
 class ScreenNames {
   static String currentRoute = "/";
@@ -31,6 +33,7 @@ class ScreenNames {
   static const String notificationScreen = "ui/notification_screen/notification_screen";
   static const String rateUsScreen = "ui/rate_us_screen/rate_us_screen";
   static const String profileScreen = "ui/profile_screen/profile_screen";
+  static const String newsCountryListScreen = "ui/news_country_list_Screen/news_country_list_Screen";
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -69,6 +72,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const ProfileScreen());
     case ScreenNames.notificationScreen:
       return MaterialPageRoute(builder: (context) => const NotificationScreen());
+    case ScreenNames.newsCountryListScreen:
+      return MaterialPageRoute(builder: (context) =>  NewsCountryListScreen(
+        navigationParameters: settings.arguments as CountryNewsNavigationParameters,
+      ));
 
     default:
       return MaterialPageRoute(builder: (context) => const HomeScreen());

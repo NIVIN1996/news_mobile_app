@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/services/navigator/routes.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/navigation/routes.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
 import '../../models/category_model/category_model_navigation_params.dart';
+import '../../models/country_based_news_model.dart';
 import '../../models/top_news_headline_model/top_news_headline_model.dart';
 import '../../providers/theme_provider/theme_provider.dart';
 import '../../services/api_services/news_list_services/news_list_services.dart';
@@ -24,14 +25,18 @@ class _MenuScreenState extends State<MenuScreen> {
   TopHeadlineNewsModel? businessListModel;
   TopHeadlineNewsModel? sportsListModel;
   TopHeadlineNewsModel? entertainmentListModel;
+  TopHeadlineNewsModel? countryListModel;
   ApiStatus politicsListStatus = ApiStatus.none;
   ApiStatus businessListStatus = ApiStatus.none;
   ApiStatus sportsListStatus = ApiStatus.none;
   ApiStatus entertainmentListStatus = ApiStatus.none;
+  ApiStatus countryListStatus = ApiStatus.none;
   String politicsListApiError = "";
   String businessListApiError = "";
   String sportsListApiError = "";
   String entertainmentListApiError = "";
+  String countryListApiError = "";
+
   @override
   void initState() {
     _getBusinessNews();
@@ -116,6 +121,64 @@ class _MenuScreenState extends State<MenuScreen> {
                             categoryListModel: entertainmentListModel,
                             categoryNewsStatus: entertainmentListStatus,
                             errorStatus: entertainmentListApiError),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: Text('Country', style: TextFontStyle.med(size: context.textPx * 20)),
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ListTile(
+                    title: Text('India', style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
+                    onTap: () {
+                      context.pushNamed(
+                        ScreenNames.newsCountryListScreen,
+                        arguments: CountryNewsNavigationParameters(
+                            category: "",countryCode: "in",
+                           ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text('US', style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
+                    onTap: () {
+                      context.pushNamed(
+                        ScreenNames.newsCountryListScreen,
+                        arguments: CountryNewsNavigationParameters(
+                            category: "",
+                            countryCode: "us",
+                     ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Japan', style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
+                    onTap: () {
+                      context.pushNamed(
+                        ScreenNames.newsCountryListScreen,
+                        arguments: CountryNewsNavigationParameters(
+                            category: "",
+                            countryCode: "jp",
+                          ),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    title: Text('Russia', style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16)),
+                    onTap: () {
+                      context.pushNamed(
+                        ScreenNames.newsCountryListScreen,
+                        arguments: CountryNewsNavigationParameters(
+                            category: "",
+                            countryCode: "ru",
+                         ),
                       );
                     },
                   ),
@@ -233,4 +296,5 @@ class _MenuScreenState extends State<MenuScreen> {
       }
     });
   }
+
 }

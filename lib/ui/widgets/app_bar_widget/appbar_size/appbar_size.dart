@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../utils/responsive_config/responsive_config.dart';
+
+import '../../../../utils/responsive_config/responsive_config.dart';
+
 
 class AppBarSize {
   AppBarSize();

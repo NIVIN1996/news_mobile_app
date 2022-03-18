@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/widgets/button_widget/custom_button_widget.dart';
+import 'package:news_mobile_app/ui/widgets/text_form_widget/text_form_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
-import '../../services/navigator/routes.dart';
+import '../navigation/routes.dart';
 import '../../utils/color/colors.dart';
 import '../../utils/common_padding/common_padding.dart';
 import '../../utils/text_style/text_style.dart';
-import '../../widgets/button_widget/custom_button_widget.dart';
-import '../../widgets/text_form_widget/text_form_widget.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);

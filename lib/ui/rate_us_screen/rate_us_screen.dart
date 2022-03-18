@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:news_mobile_app/ui/widgets/button_widget/custom_button_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import '../../utils/color/colors.dart';
 import '../../utils/common_padding/common_padding.dart';
 import '../../utils/text_style/text_style.dart';
-import '../../widgets/button_widget/custom_button_widget.dart';
+
+
 
 class RateUsScreen extends StatefulWidget {
   const RateUsScreen({Key? key}) : super(key: key);

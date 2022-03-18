@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/services/navigator/routes.dart';
-import 'package:news_mobile_app/utils/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/navigation/routes.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
+import 'package:news_mobile_app/ui/widgets/app_bar_widget/app_bar_widget.dart';
+import 'package:news_mobile_app/ui/widgets/button_widget/search_button.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
-import 'package:news_mobile_app/widgets/button_widget/custom_button_widget.dart';
-import '../../models/top_news_headline_model/article_model.dart';
 import '../../models/top_news_headline_model/top_news_headline_model.dart';
 import '../../services/api_services/news_list_services/news_list_services.dart';
 import '../../services/api_services/search_news_service/search_news_service.dart';
 import '../../utils/color/colors.dart';
 import '../../utils/static/enums.dart';
 import '../../utils/text_style/text_style.dart';
-import '../../widgets/app_bar_widget/app_bar_widget.dart';
-import '../../widgets/popup_widget/popup_widget.dart';
+
 import '../menu_screen/menu_screen.dart';
 import 'home_page_widget/category_widget/category_widget.dart';
 import 'home_page_widget/news_list_widget/news_list_widget.dart';
@@ -46,9 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBarWidget(
         menuPress: () {
           Scaffold.of(context).openDrawer();
-        },
-        filterPress: () {
-          showDialog(context: context, builder: (BuildContext context) => const PopUpWidget());
         },
         notificationPress: () {
           context.pushNamed(ScreenNames.notificationScreen);
@@ -89,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                      Expanded(
                       flex: 1,
-                        child: CustomButton(label: "Search",onPress: (){
+                        child: SearchButton(label: "Search",onPress: (){
                           if(_searchTextEditingController.text.isEmpty){
                             _getTopHeadlineNews();
                           }else {
@@ -97,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           }
 
 
-                        },textColor: AppColor.grey5,
+                        },textColor: AppColor.black,
                         )),
                   ],
                 ),

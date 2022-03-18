@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import '../../utils/text_style/text_style.dart';
-import '../../widgets/app_bar_widget/common_app_bar_widget.dart';
+import '../widgets/app_bar_widget/common_app_bar_widget.dart';
 
 class TermsAndConditionScreen extends StatefulWidget {
   const TermsAndConditionScreen({Key? key}) : super(key: key);
@@ -15,7 +15,6 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBarWidget(
-        showFilter: false,
         showNotification: false,
         backPress: () {
           Navigator.pop(context);

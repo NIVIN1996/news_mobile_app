@@ -7,9 +7,6 @@ class NewsAppUrls {
   static const sportsNewsHeadlines = baseUrl + 'top-headlines?country=in&category=sports&' + apiKey;
   static const entertainmentNewsHeadlines = baseUrl + 'top-headlines?country=in&category=entertainment&' + apiKey;
   static const politicsNewsHeadlines = baseUrl + 'top-headlines?country=in&category=politics&' + apiKey;
-  static const usNewsHeadlines = baseUrl + 'top-headlines?country=us&' + apiKey;
-  static const japanNewsHeadlines = baseUrl + 'top-headlines?country=jp&' + apiKey;
-  static const indiaNewsHeadlines = baseUrl + 'top-headlines?country=in&' + apiKey;
-  static const russiaNewsHeadlines = baseUrl + 'top-headlines?country=ru&' + apiKey;
+  static const indiaNewsHeadlines = baseUrl + 'top-headlines?';
   static const searchNewsHeadlines = baseUrl + 'everything?';
 }

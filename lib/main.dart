@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:news_mobile_app/providers/theme_provider/theme_provider.dart';
 import 'package:news_mobile_app/ui/splash_screen/splash_screen.dart';
-import 'package:news_mobile_app/services/navigator/routes.dart' as router;
+import 'package:news_mobile_app/ui/navigation/routes.dart' as router;
 import 'package:provider/provider.dart';
 
 void main() async {

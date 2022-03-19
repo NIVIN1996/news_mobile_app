@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:news_mobile_app/providers/theme_provider/theme_provider.dart';
 import 'package:news_mobile_app/ui/splash_screen/splash_screen.dart';
 import 'package:news_mobile_app/ui/navigation/routes.dart' as router;
@@ -10,6 +11,7 @@ void main() async {
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark));
+  await Hive.initFlutter();
   runApp(const MyApp());
 }
 

@@ -74,10 +74,11 @@ class _MenuScreenState extends State<MenuScreen> {
                         ScreenNames.newsCategoryListScreen,
                         arguments: CategoryNewsNavigationParameters(
                             category: "Politics",
-                            callBack: _getPoliticsNews,
-                            categoryListModel: politicsListModel,
-                            categoryNewsStatus: politicsListStatus,
-                            errorStatus: politicsListApiError),
+                            // callBack: _getPoliticsNews,
+                            // categoryListModel: politicsListModel,
+                            // categoryNewsStatus: politicsListStatus,
+                            // errorStatus: politicsListApiError
+                        ),
                       );
                     },
                   ),
@@ -88,10 +89,11 @@ class _MenuScreenState extends State<MenuScreen> {
                         ScreenNames.newsCategoryListScreen,
                         arguments: CategoryNewsNavigationParameters(
                             category: "Business",
-                            callBack: _getBusinessNews,
-                            categoryListModel: businessListModel,
-                            categoryNewsStatus: businessListStatus,
-                            errorStatus: businessListApiError),
+                            // callBack: _getBusinessNews,
+                            // categoryListModel: businessListModel,
+                            // categoryNewsStatus: businessListStatus,
+                            // errorStatus: businessListApiError
+                        ),
                       );
                     },
                   ),
@@ -102,10 +104,11 @@ class _MenuScreenState extends State<MenuScreen> {
                         ScreenNames.newsCategoryListScreen,
                         arguments: CategoryNewsNavigationParameters(
                             category: "Sports",
-                            callBack: _getSportsNews,
-                            categoryListModel: sportsListModel,
-                            categoryNewsStatus: sportsListStatus,
-                            errorStatus: sportsListApiError),
+                            // callBack: _getSportsNews,
+                            // categoryListModel: sportsListModel,
+                            // categoryNewsStatus: sportsListStatus,
+                            // errorStatus: sportsListApiError
+                        ),
                       );
                     },
                   ),
@@ -117,10 +120,11 @@ class _MenuScreenState extends State<MenuScreen> {
                         ScreenNames.newsCategoryListScreen,
                         arguments: CategoryNewsNavigationParameters(
                             category: "Entertainment",
-                            callBack: _getEntertainmentNews,
-                            categoryListModel: entertainmentListModel,
-                            categoryNewsStatus: entertainmentListStatus,
-                            errorStatus: entertainmentListApiError),
+                            // callBack: _getEntertainmentNews,
+                            // categoryListModel: entertainmentListModel,
+                            // categoryNewsStatus: entertainmentListStatus,
+                            // errorStatus: entertainmentListApiError
+                        ),
                       );
                     },
                   ),

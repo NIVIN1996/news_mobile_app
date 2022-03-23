@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:news_mobile_app/ui/navigation/routes.dart';
 import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../models/category_model/category_model_navigation_params.dart';
 import '../../../../models/top_news_headline_model/top_news_headline_model.dart';
+import '../../../../providers/news_list_provider/news_list_provider.dart';
 import '../../../../services/api_services/news_list_services/news_list_services.dart';
 import '../../../../utils/color/colors.dart';
 import '../../../../utils/static/enums.dart';
@@ -18,24 +20,8 @@ class CategoryWidget extends StatefulWidget {
 }
 
 class _CategoryWidgetState extends State<CategoryWidget> {
-  TopHeadlineNewsModel? politicsListModel;
-  TopHeadlineNewsModel? businessListModel;
-  TopHeadlineNewsModel? sportsListModel;
-  TopHeadlineNewsModel? entertainmentListModel;
-  ApiStatus politicsListStatus = ApiStatus.none;
-  ApiStatus businessListStatus = ApiStatus.none;
-  ApiStatus sportsListStatus = ApiStatus.none;
-  ApiStatus entertainmentListStatus = ApiStatus.none;
-  String politicsListApiError = "";
-  String businessListApiError = "";
-  String sportsListApiError = "";
-  String entertainmentListApiError = "";
   @override
   void initState() {
-    _getBusinessNews();
-    _getPoliticsNews();
-    _getEntertainmentNews();
-    _getSportsNews();
     super.initState();
   }
 
@@ -59,11 +45,8 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                   context.pushNamed(
                     ScreenNames.newsCategoryListScreen,
                     arguments: CategoryNewsNavigationParameters(
-                        category: "Politics",
-                        callBack: _getPoliticsNews,
-                        categoryListModel: politicsListModel,
-                        categoryNewsStatus: politicsListStatus,
-                        errorStatus: politicsListApiError),
+                        category: "politics",
+                    ),
                   );
                 },
               ),
@@ -80,10 +63,8 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                     ScreenNames.newsCategoryListScreen,
                     arguments: CategoryNewsNavigationParameters(
                         category: "Business",
-                        callBack: _getBusinessNews,
-                        categoryListModel: businessListModel,
-                        categoryNewsStatus: businessListStatus,
-                        errorStatus: businessListApiError),
+
+                    ),
                   );
                 },
               ),
@@ -105,10 +86,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                     ScreenNames.newsCategoryListScreen,
                     arguments: CategoryNewsNavigationParameters(
                         category: "Sports",
-                        callBack: _getSportsNews,
-                        categoryListModel: sportsListModel,
-                        categoryNewsStatus: sportsListStatus,
-                        errorStatus: sportsListApiError),
+                    ),
                   );
                 },
               ),
@@ -125,10 +103,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                     ScreenNames.newsCategoryListScreen,
                     arguments: CategoryNewsNavigationParameters(
                         category: "Entertainment",
-                        callBack: _getEntertainmentNews,
-                        categoryListModel: entertainmentListModel,
-                        categoryNewsStatus: entertainmentListStatus,
-                        errorStatus: entertainmentListApiError),
+                    ),
                   );
                 },
               ),
@@ -142,75 +117,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
     );
   }
 
-  _getBusinessNews() async {
-    setState(() {
-      businessListApiError = "";
-      businessListStatus = ApiStatus.loading;
-    });
 
-    businessListModel = await NewsListingService.getBusinessNews();
 
-    setState(() {
-      if (businessListModel!.status == "ok") {
-        businessListStatus = ApiStatus.success;
-      } else {
-        businessListApiError = businessListModel!.status;
-        businessListStatus = ApiStatus.error;
-      }
-    });
-  }
 
-  _getPoliticsNews() async {
-    setState(() {
-      politicsListApiError = "";
-      politicsListStatus = ApiStatus.loading;
-    });
-
-    politicsListModel = await NewsListingService.getPolitics();
-
-    setState(() {
-      if (politicsListModel!.status == "ok") {
-        politicsListStatus = ApiStatus.success;
-      } else {
-        politicsListApiError = politicsListModel!.status;
-        politicsListStatus = ApiStatus.error;
-      }
-    });
-  }
-
-  _getSportsNews() async {
-    setState(() {
-      sportsListApiError = "";
-      sportsListStatus = ApiStatus.loading;
-    });
-
-    sportsListModel = await NewsListingService.getSports();
-
-    setState(() {
-      if (sportsListModel!.status == "ok") {
-        sportsListStatus = ApiStatus.success;
-      } else {
-        sportsListApiError = sportsListModel!.status;
-        sportsListStatus = ApiStatus.error;
-      }
-    });
-  }
-
-  _getEntertainmentNews() async {
-    setState(() {
-      entertainmentListApiError = "";
-      entertainmentListStatus = ApiStatus.loading;
-    });
-
-    entertainmentListModel = await NewsListingService.getEntertainment();
-
-    setState(() {
-      if (entertainmentListModel!.status == "ok") {
-        entertainmentListStatus = ApiStatus.success;
-      } else {
-        entertainmentListApiError = entertainmentListModel!.status;
-        entertainmentListStatus = ApiStatus.error;
-      }
-    });
-  }
 }

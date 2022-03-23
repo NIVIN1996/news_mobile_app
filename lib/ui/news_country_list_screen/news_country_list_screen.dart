@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/ui/widgets/popup_widget/popup_widget.dart';
 import '../../models/country_based_news_model.dart';
 import '../../models/top_news_headline_model/top_news_headline_model.dart';
 import '../../services/api_services/country_news_service/country_news_service.dart';
@@ -50,11 +49,11 @@ class _NewsCountryListScreenState extends State<NewsCountryListScreen> {
         child: Column(
           children: [
             NewsListWidget(
-              status: countryListStatus,
-              apiError: countryListApiError,
-              model: countryListModel,
-              isDelivered: true,
-              retryCallBack: _getCountryNews,
+              // status: countryListStatus,
+              // apiError: countryListApiError,
+              // model: countryListModel,
+              // isDelivered: true,
+              // retryCallBack: _getCountryNews,
             ),
           ],
         ),

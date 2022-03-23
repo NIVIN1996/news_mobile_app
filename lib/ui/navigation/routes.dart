@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/models/news_details_model/news_details_navigation_params.dart';
+import 'package:news_mobile_app/ui/bookmark_list_screen/bookmark_list_screen.dart';
 import 'package:news_mobile_app/ui/change_password_screen/change_password_screen.dart';
 import 'package:news_mobile_app/ui/forgot_password_screen/forgot_password_screen.dart';
 import 'package:news_mobile_app/ui/login_screen/login_screen.dart';
@@ -34,6 +35,7 @@ class ScreenNames {
   static const String rateUsScreen = "ui/rate_us_screen/rate_us_screen";
   static const String profileScreen = "ui/profile_screen/profile_screen";
   static const String newsCountryListScreen = "ui/news_country_list_Screen/news_country_list_Screen";
+  static const String bookmarkListScreen = "ui/bookmark_list_screen/bookmark_list_screen";
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -72,6 +74,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const ProfileScreen());
     case ScreenNames.notificationScreen:
       return MaterialPageRoute(builder: (context) => const NotificationScreen());
+    case ScreenNames.bookmarkListScreen:
+      return MaterialPageRoute(builder: (context) => const BookmarkListScreen());
     case ScreenNames.newsCountryListScreen:
       return MaterialPageRoute(builder: (context) =>  NewsCountryListScreen(
         navigationParameters: settings.arguments as CountryNewsNavigationParameters,

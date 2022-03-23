@@ -6,10 +6,12 @@ import 'package:news_mobile_app/ui/navigation/routes.dart';
 import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/ui/widgets/shimmer_widget/shimmer_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
-
+import 'package:provider/provider.dart';
+import '../../../../models/top_news_headline_model/article_model.dart';
+import '../../../../models/top_news_headline_model/top_news_headline_model.dart';
+import '../../../../providers/news_list_provider/news_list_provider.dart';
 import '../../../../utils/color/colors.dart';
 import '../../../../utils/text_style/text_style.dart';
-
 
 class NewsListItemWidget extends StatefulWidget {
   final int index;
@@ -36,17 +38,23 @@ class NewsListItemWidget extends StatefulWidget {
 class _NewsListItemWidgetState extends State<NewsListItemWidget> {
   bool selectBookmark = false;
   DateFormat dateFormat = DateFormat("dd-MM-yyyy");
+  Article bookmark = Article(
+      source: Source(id: "", name: ""), author: "", title: "", description: "", url: "", urlToImage: "", content: "");
 
   @override
   Widget build(BuildContext context) {
     String date = dateFormat.format(widget.publishedAt);
     String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
+    var myList = context.watch<ArticleListProvider>().myList;
+    var selectedArticle = context.watch<ArticleListProvider>().articleList;
+    final article = selectedArticle[widget.index];
 
     return GestureDetector(
       onTap: () {
         context.pushNamed(
           ScreenNames.newsDetailsScreen,
           arguments: NewsDetailsNavigationParameters(
+              index: widget.index,
               author: widget.author,
               imageUrl: widget.imageUrl,
               publishedAt: date + " " + formattedTime,
@@ -61,13 +69,14 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               flex: 2,
               child: GestureDetector(
                 onTap: () {},
                 child: Padding(
-                  padding: EdgeInsets.all(context.widthPx * 10.0),
+                  padding: EdgeInsets.only(top:context.widthPx * 15.0,left: context.widthPx * 10.0,right: context.widthPx * 5.0),
                   child: CachedNetworkImage(
                     imageUrl: widget.imageUrl,
                     imageBuilder: (context, imageProvider) => Container(
@@ -104,7 +113,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: context.heightPx * 10.0, bottom: context.heightPx * 3.0),
+                      padding: EdgeInsets.only(top: context.heightPx * 0.0, bottom: context.heightPx * 0.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -117,14 +126,20 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                               style: TextFontStyle.med(size: context.textPx * 16),
                             ),
                           ),
-                          GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  selectBookmark = !selectBookmark;
-                                });
-                              },
-                              child: Icon(selectBookmark ? Icons.bookmark : Icons.bookmark_outline,
-                                  color: AppColor.yellow2, size: context.widthPx * 18)),
+                          IconButton(
+                            padding: const EdgeInsets.all(0),
+                            icon: Icon(myList.contains(article) ? Icons.bookmark : Icons.bookmark_outline,
+                                color: AppColor.yellow2, size: context.widthPx * 20),
+                            onPressed: () {
+                              final article = selectedArticle[widget.index];
+
+                              if (!myList.contains(article)) {
+                                context.read<ArticleListProvider>().addBookmark(article);
+                              } else {
+                                context.read<ArticleListProvider>().removeFromList(article);
+                              }
+                            },
+                          ),
                         ],
                       ),
                     ),

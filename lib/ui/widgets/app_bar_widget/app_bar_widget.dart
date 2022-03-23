@@ -55,7 +55,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           child: GestureDetector(
             onTap: notificationPress ??
                 () {
-                  context.pushNamed(ScreenNames.notificationScreen);
+                  context.pushNamed(ScreenNames.bookmarkListScreen);
                 },
             //! Search icon widget
             child: Container(child: AppBarSize.notificationIconWidget(context)),

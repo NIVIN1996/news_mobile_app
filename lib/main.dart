@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:news_mobile_app/models/top_news_headline_model/article_model.dart';
+import 'package:news_mobile_app/providers/common_function_provider/provider_list.dart';
 import 'package:news_mobile_app/providers/theme_provider/theme_provider.dart';
 import 'package:news_mobile_app/ui/splash_screen/splash_screen.dart';
 import 'package:news_mobile_app/ui/navigation/routes.dart' as router;
 import 'package:provider/provider.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark));
   await Hive.initFlutter();
+  if(!Hive.isAdapterRegistered(ArticleAdapter().typeId)){
+    Hive.registerAdapter(ArticleAdapter());
+  }
   runApp(const MyApp());
+  runApp(MultiProvider(providers: ProviderRegistrar.providers, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

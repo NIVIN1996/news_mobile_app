@@ -4,7 +4,10 @@ import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/ui/widgets/app_bar_widget/app_bar_widget.dart';
 import 'package:news_mobile_app/ui/widgets/button_widget/search_button.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
+import 'package:provider/provider.dart';
 import '../../models/top_news_headline_model/top_news_headline_model.dart';
+
+import '../../providers/news_list_provider/news_list_provider.dart';
 import '../../services/api_services/news_list_services/news_list_services.dart';
 import '../../services/api_services/search_news_service/search_news_service.dart';
 import '../../utils/color/colors.dart';
@@ -29,10 +32,15 @@ class _HomeScreenState extends State<HomeScreen> {
   String topRelatedListApiError = "";
 
 
+
   @override
   void initState() {
     _getTopHeadlineNews();
     super.initState();
+    Future.delayed(Duration.zero, () {
+      context.read<ArticleListProvider>().getArticle();
+
+    });
   }
 
   @override
@@ -40,6 +48,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final styleActive = TextFontStyle.med(color: AppColor.black, size: context.textPx * 16);
     final styleHint = TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16);
     final style = _searchTextEditingController.text.isEmpty ? styleHint : styleActive;
+
+
     return Scaffold(
       drawer: const MenuScreen(),
       appBar: AppBarWidget(
@@ -47,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Scaffold.of(context).openDrawer();
         },
         notificationPress: () {
-          context.pushNamed(ScreenNames.notificationScreen);
+          context.pushNamed(ScreenNames.bookmarkListScreen);
         },
         appBar: AppBar(),
       ),
@@ -99,12 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const CategoryWidget(),
-              NewsListWidget(
-                apiError: topRelatedListApiError,
-                status: topRelatedListStatus,
-                model: topRelatedListModel,
-                retryCallBack: _getTopHeadlineNews,
-                isDelivered: true,
+              const NewsListWidget(
               )
             ],
           ),

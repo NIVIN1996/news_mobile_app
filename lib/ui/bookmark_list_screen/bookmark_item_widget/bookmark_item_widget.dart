@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/ui/widgets/shimmer_widget/shimmer_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:provider/provider.dart';
 import '../../../../utils/color/colors.dart';
 import '../../../../utils/text_style/text_style.dart';
+import '../../../models/news_details_model/news_details_navigation_params.dart';
 import '../../../models/top_news_headline_model/article_model.dart';
 import '../../../providers/news_list_provider/news_list_provider.dart';
+import '../../navigation/routes.dart';
 
 class BookmarkItemWidget extends StatefulWidget {
   final int index;
@@ -18,6 +21,7 @@ class BookmarkItemWidget extends StatefulWidget {
   final String author;
   final String content;
   final String url;
+  final DateTime publishedAt;
 
   const BookmarkItemWidget({
     Key? key,
@@ -28,7 +32,7 @@ class BookmarkItemWidget extends StatefulWidget {
     required this.author,
     required this.content,
     required this.url,
-    required this.currentArticle,
+    required this.currentArticle, required this.publishedAt,
   }) : super(key: key);
 
   @override
@@ -41,20 +45,22 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
 
   @override
   Widget build(BuildContext context) {
+    String date = dateFormat.format(widget.publishedAt);
+    String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
     final _myList = context
         .watch<ArticleListProvider>()
         .myList;
     return GestureDetector(
       onTap: () {
-        // context.pushNamed(
-        //   ScreenNames.newsDetailsScreen,
-        //   arguments: NewsDetailsNavigationParameters(
-        //       author: widget.author,
-        //       imageUrl: widget.imageUrl,
-        //       publishedAt: date + " " + formattedTime,
-        //       subTitle: widget.subTitle,
-        //       title: widget.title),
-        // );
+        context.pushNamed(
+          ScreenNames.newsDetailsScreen,
+          arguments: NewsDetailsNavigationParameters(
+              author: widget.author,
+              imageUrl: widget.imageUrl,
+              publishedAt: date + " " + formattedTime,
+              subTitle: widget.subTitle,
+              title: widget.title, index: widget.index),
+        );
       },
       child: Card(
         elevation: 5,
@@ -140,26 +146,26 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
                             overflow: TextOverflow.ellipsis,
                             style: TextFontStyle.regular(size: context.textPx * 14),
                           ),
-                    // Padding(
-                    //     padding: EdgeInsets.symmetric(
-                    //       vertical: context.heightPx * 8.0,
-                    //     ),
-                    //     child: RichText(
-                    //       text: TextSpan(
-                    //         children: [
-                    //           WidgetSpan(
-                    //             child: Padding(
-                    //               padding: EdgeInsets.only(right: context.widthPx * 5.0),
-                    //               child: Icon(Icons.access_time, size: context.widthPx * 18),
-                    //             ),
-                    //           ),
-                    //           TextSpan(
-                    //             text: date + " " + formattedTime,
-                    //             style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 14),
-                    //           ),
-                    //         ],
-                    //       ),
-                    //     )),
+                    Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: context.heightPx * 8.0,
+                        ),
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              WidgetSpan(
+                                child: Padding(
+                                  padding: EdgeInsets.only(right: context.widthPx * 5.0),
+                                  child: Icon(Icons.access_time, size: context.widthPx * 18),
+                                ),
+                              ),
+                              TextSpan(
+                                text: date + " " + formattedTime,
+                                style: TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 14),
+                              ),
+                            ],
+                          ),
+                        )),
                   ],
                 ),
               ),

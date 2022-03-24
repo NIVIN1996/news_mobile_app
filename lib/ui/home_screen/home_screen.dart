@@ -6,17 +6,15 @@ import 'package:news_mobile_app/ui/widgets/button_widget/search_button.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:provider/provider.dart';
 import '../../models/top_news_headline_model/top_news_headline_model.dart';
-
 import '../../providers/news_list_provider/news_list_provider.dart';
-import '../../services/api_services/news_list_services/news_list_services.dart';
-import '../../services/api_services/search_news_service/search_news_service.dart';
 import '../../utils/color/colors.dart';
 import '../../utils/static/enums.dart';
 import '../../utils/text_style/text_style.dart';
-
 import '../menu_screen/menu_screen.dart';
+import '../widgets/common_text_widget/highlight_text_widget.dart';
+import '../widgets/shimmer_widget/shimmer_widget.dart';
 import 'home_page_widget/category_widget/category_widget.dart';
-import 'home_page_widget/news_list_widget/news_list_widget.dart';
+import 'home_page_widget/news_list_widget/news_list_item_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -31,15 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
   ApiStatus topRelatedListStatus = ApiStatus.none;
   String topRelatedListApiError = "";
 
-
-
   @override
   void initState() {
-    _getTopHeadlineNews();
     super.initState();
     Future.delayed(Duration.zero, () {
       context.read<ArticleListProvider>().getArticle();
-
     });
   }
 
@@ -48,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final styleActive = TextFontStyle.med(color: AppColor.black, size: context.textPx * 16);
     final styleHint = TextFontStyle.med(color: AppColor.grey5, size: context.textPx * 16);
     final style = _searchTextEditingController.text.isEmpty ? styleHint : styleActive;
-
 
     return Scaffold(
       drawer: const MenuScreen(),
@@ -77,12 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   children: [
                     Expanded(
-                      flex:3,
+                      flex: 3,
                       child: TextField(
                         controller: _searchTextEditingController,
                         decoration: InputDecoration(
                           icon: Icon(Icons.search, color: style.color),
-
                           contentPadding: EdgeInsets.symmetric(
                             vertical: context.heightPx * 12,
                           ),
@@ -93,24 +85,89 @@ class _HomeScreenState extends State<HomeScreen> {
                         onChanged: (searchText) {},
                       ),
                     ),
-                     Expanded(
-                      flex: 1,
-                        child: SearchButton(label: "Search",onPress: (){
-                          if(_searchTextEditingController.text.isEmpty){
-                            _getTopHeadlineNews();
-                          }else {
-                            _getSearchNews();
-                          }
-
-
-                        },textColor: AppColor.black,
+                    Expanded(
+                        flex: 1,
+                        child: SearchButton(
+                          label: "Search",
+                          onPress: () {
+                            if (_searchTextEditingController.text.isEmpty) {
+                              context.read<ArticleListProvider>().getArticle();
+                            } else {
+                              context.read<ArticleListProvider>().getSearchArticle(_searchTextEditingController.text);
+                            }
+                          },
+                          textColor: AppColor.black,
                         )),
                   ],
                 ),
               ),
               const CategoryWidget(),
-              const NewsListWidget(
-              )
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const HighLightTextWidget(),
+                  Consumer<ArticleListProvider>(builder: (context, provider, _) {
+                    if (provider.articleInitStatus == ApiStatus.loading) {
+                      return Column(
+                        children: [
+                          for (int i = 0; i < 4; i++)
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
+                              child: ShimmerWidget(
+                                height: context.heightPx * 140,
+                                width: double.infinity,
+                                radius: 10,
+                              ),
+                            )
+                        ],
+                      );
+                    }
+                    return Container(
+                      padding: EdgeInsets.symmetric(vertical: context.heightPx * 5.0),
+                      child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          itemCount: provider.articleInitStatus == ApiStatus.success
+                              ? (_searchTextEditingController.text.isEmpty
+                                  ? provider.articleList.length
+                                  : provider.searchArticleList.length)
+                              : 5,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return provider.articleInitStatus == ApiStatus.success
+                                ? NewsListItemWidget(
+                                    title: _searchTextEditingController.text.isEmpty
+                                        ? provider.articleList[index].title
+                                        : provider.searchArticleList[index].title,
+                                    imageUrl: _searchTextEditingController.text.isEmpty
+                                        ? provider.articleList[index].urlToImage
+                                        : provider.searchArticleList[index].urlToImage,
+                                    publishedAt: _searchTextEditingController.text.isEmpty
+                                        ? provider.articleList[index].publishedAt!
+                                        : provider.searchArticleList[index].publishedAt!,
+                                    subTitle: _searchTextEditingController.text.isEmpty
+                                        ? provider.articleList[index].content
+                                        : provider.searchArticleList[index].content,
+                                    index: index,
+                                    author: _searchTextEditingController.text.isEmpty
+                                        ? provider.articleList[index].source.name
+                                        : provider.searchArticleList[index].source.name,
+                                  )
+                                : Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
+                                    child: ShimmerWidget(
+                                      height: context.heightPx * 140,
+                                      width: context.widthPx * 100,
+                                      radius: 10,
+                                    ),
+                                  );
+                          }),
+                    );
+                  }),
+                ],
+              ),
             ],
           ),
         ),
@@ -118,39 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  _getTopHeadlineNews() async {
-    setState(() {
-      topRelatedListApiError = "";
-      topRelatedListStatus = ApiStatus.loading;
-    });
 
-    topRelatedListModel = await NewsListingService.getTopNewsHeadlines();
 
-    setState(() {
-      if (topRelatedListModel!.status == "ok") {
-        topRelatedListStatus = ApiStatus.success;
-      } else {
-        topRelatedListApiError = topRelatedListModel!.status;
-        topRelatedListStatus = ApiStatus.error;
-      }
-    });
-  }
 
-  _getSearchNews() async {
-    setState(() {
-      topRelatedListApiError = "";
-      topRelatedListStatus = ApiStatus.loading;
-    });
-
-    topRelatedListModel = await SearchNewsService.getSearchNews(_searchTextEditingController.text);
-
-    setState(() {
-      if (topRelatedListModel!.status == "ok") {
-        topRelatedListStatus = ApiStatus.success;
-      } else {
-        topRelatedListApiError = topRelatedListModel!.status;
-        topRelatedListStatus = ApiStatus.error;
-      }
-    });
-  }
 }

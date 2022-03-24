@@ -18,7 +18,6 @@ Future<void> main() async {
   if(!Hive.isAdapterRegistered(ArticleAdapter().typeId)){
     Hive.registerAdapter(ArticleAdapter());
   }
-  runApp(const MyApp());
   runApp(MultiProvider(providers: ProviderRegistrar.providers, child: const MyApp()));
 }
 

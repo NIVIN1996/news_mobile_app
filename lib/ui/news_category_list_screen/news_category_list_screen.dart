@@ -79,18 +79,18 @@ class _NewsCategoryListScreenState extends State<NewsCategoryListScreen> {
                     physics: const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     itemCount: provider.articleInitStatus == ApiStatus.success
-                        ? provider.topHeadlineNewsModel!.articles.length
+                        ? provider.categoryArticleList.length
                         : 5,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return provider.articleInitStatus == ApiStatus.success
                           ? NewsListItemWidget(
-                        title: provider.topHeadlineNewsModel!.articles[index].title,
-                        imageUrl: provider.topHeadlineNewsModel!.articles[index].urlToImage,
-                        publishedAt: provider.topHeadlineNewsModel!.articles[index].publishedAt!,
-                        subTitle: provider.topHeadlineNewsModel!.articles[index].content,
+                        title: provider.categoryArticleList[index].title,
+                        imageUrl: provider.categoryArticleList[index].urlToImage,
+                        publishedAt: provider.categoryArticleList[index].publishedAt!,
+                        subTitle: provider.categoryArticleList[index].content,
                         index: index,
-                        author: provider.topHeadlineNewsModel!.articles[index].source.name,
+                        author: provider.categoryArticleList[index].source.name,
                       )
                           : Padding(
                         padding: EdgeInsets.symmetric(

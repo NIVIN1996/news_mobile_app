@@ -7,8 +7,6 @@ import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/ui/widgets/shimmer_widget/shimmer_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:provider/provider.dart';
-import '../../../../models/top_news_headline_model/article_model.dart';
-import '../../../../models/top_news_headline_model/top_news_headline_model.dart';
 import '../../../../providers/news_list_provider/news_list_provider.dart';
 import '../../../../utils/color/colors.dart';
 import '../../../../utils/text_style/text_style.dart';
@@ -38,15 +36,16 @@ class NewsListItemWidget extends StatefulWidget {
 class _NewsListItemWidgetState extends State<NewsListItemWidget> {
   bool selectBookmark = false;
   DateFormat dateFormat = DateFormat("dd-MM-yyyy");
-  Article bookmark = Article(
-      source: Source(id: "", name: ""), author: "", title: "", description: "", url: "", urlToImage: "", content: "");
 
   @override
   Widget build(BuildContext context) {
     String date = dateFormat.format(widget.publishedAt);
     String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
     var myList = context.watch<ArticleListProvider>().myList;
+    // var myTitle = context.watch<ArticleListProvider>().myTitle;
     var selectedArticle = context.watch<ArticleListProvider>().articleList;
+    var selectedTitle = context.watch<ArticleListProvider>().articleList[widget.index].title;
+    // String myTitle = selectedTitle[widget.index];
     final article = selectedArticle[widget.index];
 
     return GestureDetector(
@@ -131,7 +130,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                             icon: Icon(myList.contains(article) ? Icons.bookmark : Icons.bookmark_outline,
                                 color: AppColor.yellow2, size: context.widthPx * 20),
                             onPressed: () {
-                              final article = selectedArticle[widget.index];
+                              print(selectedTitle);
 
                               if (!myList.contains(article)) {
                                 context.read<ArticleListProvider>().addBookmark(article);

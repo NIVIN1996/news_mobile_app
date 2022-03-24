@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_mobile_app/ui/widgets/common_text_widget/highlight_text_widget.dart';
 import 'package:news_mobile_app/ui/widgets/shimmer_widget/shimmer_widget.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:provider/provider.dart';
@@ -24,14 +25,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
-            child: Text(
-              "Highlights",
-              textAlign: TextAlign.start,
-              style: TextFontStyle.semiBold(size: context.textPx * 20),
-            ),
-          ),
+          const HighLightTextWidget(),
           Consumer<ArticleListProvider>(builder: (context, provider, _) {
             if (provider.articleInitStatus == ApiStatus.loading) {
               return Column(

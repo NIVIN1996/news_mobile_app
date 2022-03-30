@@ -32,7 +32,8 @@ class BookmarkItemWidget extends StatefulWidget {
     required this.author,
     required this.content,
     required this.url,
-    required this.currentArticle, required this.publishedAt,
+    required this.currentArticle,
+    required this.publishedAt,
   }) : super(key: key);
 
   @override
@@ -47,9 +48,8 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
   Widget build(BuildContext context) {
     String date = dateFormat.format(widget.publishedAt);
     String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
-    final _myList = context
-        .watch<ArticleListProvider>()
-        .myList;
+    final _myList = context.watch<ArticleListProvider>().myList;
+    final _myTitle = context.watch<ArticleListProvider>().myTitle;
     return GestureDetector(
       onTap: () {
         context.pushNamed(
@@ -59,7 +59,8 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
               imageUrl: widget.imageUrl,
               publishedAt: date + " " + formattedTime,
               subTitle: widget.subTitle,
-              title: widget.title, index: widget.index),
+              title: widget.title,
+              index: widget.index),
         );
       },
       child: Card(
@@ -128,8 +129,9 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
                           GestureDetector(
                               onTap: () {
                                 final data = _myList[widget.index];
+                                final title = _myTitle[widget.index];
                                 context.read<ArticleListProvider>().removeFromList(data);
-
+                                // context.read<ArticleListProvider>().removeFromList(title);
                               },
                               child: Icon(Icons.close, color: AppColor.red, size: context.widthPx * 20)),
                         ],

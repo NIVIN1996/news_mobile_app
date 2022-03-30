@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/models/news_details_model/news_details_navigation_params.dart';
 import 'package:news_mobile_app/ui/bookmark_list_screen/bookmark_list_screen.dart';
@@ -8,7 +9,6 @@ import 'package:news_mobile_app/ui/menu_screen/menu_screen.dart';
 import 'package:news_mobile_app/ui/notification_screen/notification_screen.dart';
 import 'package:news_mobile_app/ui/rate_us_screen/rate_us_screen.dart';
 import 'package:news_mobile_app/ui/terms_and_condition_screen/terms_and_condition_screen.dart';
-
 import '../../models/category_model/category_model_navigation_params.dart';
 import '../../models/country_based_news_model.dart';
 import '../home_screen/home_screen.dart';
@@ -53,9 +53,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case ScreenNames.changePasswordScreen:
       return MaterialPageRoute(builder: (context) => const ChangePasswordScreen());
     case ScreenNames.homeScreen:
-      return MaterialPageRoute(builder: (context) => const HomeScreen());
+      return MaterialPageRoute(builder: (context) =>   HomeScreen(user: settings.arguments as User?,
+
+      ));
     case ScreenNames.menuScreen:
-      return MaterialPageRoute(builder: (context) => const MenuScreen());
+      return MaterialPageRoute(builder: (context) =>  MenuScreen(currentUser: settings.arguments as User,));
     case ScreenNames.newsDetailsScreen:
       return MaterialPageRoute(
           builder: (context) => NewsDetailsScreen(
@@ -71,7 +73,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case ScreenNames.rateUsScreen:
       return MaterialPageRoute(builder: (context) => const RateUsScreen());
     case ScreenNames.profileScreen:
-      return MaterialPageRoute(builder: (context) => const ProfileScreen());
+      return MaterialPageRoute(builder: (context) =>  ProfileScreen(user: settings.arguments as User?,));
     case ScreenNames.notificationScreen:
       return MaterialPageRoute(builder: (context) => const NotificationScreen());
     case ScreenNames.bookmarkListScreen:
@@ -82,6 +84,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       ));
 
     default:
-      return MaterialPageRoute(builder: (context) => const HomeScreen());
+      return MaterialPageRoute(builder: (context) =>   HomeScreen(user: settings.arguments as User, ));
   }
 }

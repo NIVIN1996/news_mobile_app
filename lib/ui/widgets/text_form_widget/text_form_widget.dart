@@ -12,9 +12,10 @@ class TextFormWidget extends StatefulWidget {
   final TextEditingController controller;
   final EdgeInsets? contentPadding;
   final bool edit;
-
+  final String? Function(String?)? validation;
   final TextInputType? keyboardType;
   final bool obscureText;
+  final FocusNode? focusNode;
   final Function(String)? onChange;
   final int maxLength;
   final int line;
@@ -29,6 +30,7 @@ class TextFormWidget extends StatefulWidget {
     required this.controller,
     this.contentPadding,
     this.keyboardType,
+    this.validation,
     this.edit = true,
     this.obscureText = false,
     this.onChange,
@@ -39,6 +41,7 @@ class TextFormWidget extends StatefulWidget {
     this.iconColor = Colors.grey,
     this.showEyeIcon = false,
     this.validationText,
+    this.focusNode,
     Key? key,
   }) : super(key: key);
 
@@ -65,13 +68,15 @@ class _TextFormWidgetState extends State<TextFormWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextField(
+          TextFormField(
             controller: widget.controller,
             maxLines: widget.line,
             enabled: widget.edit,
             keyboardType: widget.keyboardType,
             obscureText: showText,
+            focusNode: widget.focusNode,
             maxLength: widget.maxLength,
+            validator: widget.validation,
             onChanged: widget.onChange,
             onTap: () {
               if (widget.onTap != null) {

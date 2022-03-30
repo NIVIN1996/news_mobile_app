@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/ui/navigation/routes.dart';
 import 'package:news_mobile_app/ui/navigation/navigation.dart';
@@ -17,7 +18,8 @@ import 'home_page_widget/category_widget/category_widget.dart';
 import 'home_page_widget/news_list_widget/news_list_item_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  final User? user;
+  const HomeScreen({Key? key, required this.user }) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -28,14 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
   TopHeadlineNewsModel? topRelatedListModel;
   ApiStatus topRelatedListStatus = ApiStatus.none;
   String topRelatedListApiError = "";
-
+  late User? _currentUser;
   @override
   void initState() {
     super.initState();
+    _currentUser = widget.user;
     Future.delayed(Duration.zero, () {
       context.read<ArticleListProvider>().getArticle();
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final style = _searchTextEditingController.text.isEmpty ? styleHint : styleActive;
 
     return Scaffold(
-      drawer: const MenuScreen(),
+      drawer:  MenuScreen(currentUser:_currentUser),
       appBar: AppBarWidget(
         menuPress: () {
           Scaffold.of(context).openDrawer();

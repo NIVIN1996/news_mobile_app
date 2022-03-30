@@ -18,8 +18,8 @@ class _BookmarkListScreenState extends State<BookmarkListScreen> {
   @override
   Widget build(BuildContext context) {
     final _myList = context.watch<ArticleListProvider>().myList;
-    // final _myTitle = context.watch<ArticleListProvider>().myTitle;
-    // print("................$_myTitle");
+    final _myTitle = context.watch<ArticleListProvider>().myTitle;
+    print("................$_myTitle");
 
     return Scaffold(
       appBar: CommonAppBarWidget(
@@ -43,6 +43,7 @@ class _BookmarkListScreenState extends State<BookmarkListScreen> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       final data = _myList[index];
+                      // final data = _myTitle[index];
 
                       return BookmarkItemWidget(
                         title: data.title,

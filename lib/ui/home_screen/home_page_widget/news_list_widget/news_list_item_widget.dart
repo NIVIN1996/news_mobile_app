@@ -42,7 +42,7 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
     String date = dateFormat.format(widget.publishedAt);
     String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
     var myList = context.watch<ArticleListProvider>().myList;
-    // var myTitle = context.watch<ArticleListProvider>().myTitle;
+    var myTitle = context.watch<ArticleListProvider>().myTitle;
     var selectedArticle = context.watch<ArticleListProvider>().articleList;
     var selectedTitle = context.watch<ArticleListProvider>().articleList[widget.index].title;
     // String myTitle = selectedTitle[widget.index];

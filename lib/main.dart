@@ -15,31 +15,50 @@ Future<void> main() async {
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark));
   await Hive.initFlutter();
-  if(!Hive.isAdapterRegistered(ArticleAdapter().typeId)){
+  if (!Hive.isAdapterRegistered(ArticleAdapter().typeId)) {
     Hive.registerAdapter(ArticleAdapter());
   }
   runApp(MultiProvider(providers: ProviderRegistrar.providers, child: const MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => ThemeProvider(),
-        builder: (context, _) {
-          final themeProvider = Provider.of<ThemeProvider>(context);
+  _MyAppState createState() => _MyAppState();
+}
 
+// This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
+  ThemeProvider themeProvider = ThemeProvider();
+  void getCurrentAppTheme() async {
+    themeProvider.darkTheme = await themeProvider.darkThemePreferences.getTheme();
+  }
+
+  @override
+  void initState() {
+    getCurrentAppTheme();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) {
+            return themeProvider;
+          })
+        ],
+        child: Consumer<ThemeProvider>(builder: (context, themeData, child) {
           return MaterialApp(
             title: 'News4U',
-            themeMode: themeProvider.themeMode,
-            theme: MyThemes.lightTheme,
+            themeMode: themeProvider.darkTheme ? ThemeMode.dark : ThemeMode.light,
+            theme: themeProvider.darkTheme ? MyThemes.darkTheme : MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
             debugShowCheckedModeBanner: false,
             onGenerateRoute: router.generateRoute,
             home: const SplashScreen(),
           );
-        },
-      );
+        }));
+  }
 }

@@ -6,6 +6,7 @@ import 'package:news_mobile_app/ui/widgets/app_bar_widget/app_bar_widget.dart';
 import 'package:news_mobile_app/ui/widgets/button_widget/search_button.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/top_news_headline_model/top_news_headline_model.dart';
 import '../../providers/news_list_provider/news_list_provider.dart';
 import '../../utils/color/colors.dart';

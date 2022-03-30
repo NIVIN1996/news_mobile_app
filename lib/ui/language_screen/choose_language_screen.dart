@@ -7,6 +7,7 @@ import '../../models/language_model/language_model.dart';
 import '../../utils/color/colors.dart';
 import '../../utils/text_style/text_style.dart';
 
+
 class ChooseLanguageScreen extends StatefulWidget {
   const ChooseLanguageScreen({Key? key}) : super(key: key);
 
@@ -61,7 +62,8 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
         padding: EdgeInsets.symmetric(horizontal: context.heightPx * 25.0, vertical: context.heightPx * 20),
         child: GestureDetector(
           onTap: () {
-            context.pushNamed(ScreenNames.login);
+            // context.pushNamed(ScreenNames.login);
+            context.pushNamedAndRemoveUntil(ScreenNames.login);
           },
           child: Text(
             'Next',

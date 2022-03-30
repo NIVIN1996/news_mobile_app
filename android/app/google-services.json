@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "870750013889",
+    "project_id": "news4u-app",
+    "storage_bucket": "news4u-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870750013889:android:b8069a68b60dc6a03b8740",
+        "android_client_info": {
+          "package_name": "com.example.news_mobile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870750013889-432ondscbu6f4926pjtr9jbacmt3cr64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3K7n14QfTaQafSl5bDWE7M2fH5jRYSmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870750013889-432ondscbu6f4926pjtr9jbacmt3cr64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

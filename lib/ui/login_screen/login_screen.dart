@@ -49,152 +49,152 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return firebaseApp;
   }
+  @override
+  void initState() {
+    _initializeFirebase();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        _focusEmail.unfocus();
-        _focusPassword.unfocus();
-      },
-      child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: FutureBuilder(
-            future: _initializeFirebase(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: context.percentHeight * 50,
-                      width: double.infinity,
-                      margin: EdgeInsets.all(context.widthPx * 20.0),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).backgroundColor,
-                          boxShadow: const [BoxShadow(blurRadius: 3.0)],
-                          borderRadius: BorderRadius.circular(context.widthPx * 10),
-                          border: Border.all(color: AppColor.hintColor)),
-                      child: Form(
-                        key: _formKey,
-                        child: Padding(
-                          padding: CommonPadding.paddingW25(context),
-                          child: Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: CommonPadding.paddingH10(context),
-                                child: Text("News4U",
-                                    textAlign: TextAlign.right, style: TextFontStyle.med(size: context.textPx * 30)),
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Column(
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: context.percentHeight * 50,
+                    width: double.infinity,
+                    margin: EdgeInsets.all(context.widthPx * 20.0),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).backgroundColor,
+                        boxShadow: const [BoxShadow(blurRadius: 3.0)],
+                        borderRadius: BorderRadius.circular(context.widthPx * 10),
+                        border: Border.all(color: AppColor.hintColor)),
+                    child: Form(
+                      key: _formKey,
+                      child: Padding(
+                        padding: CommonPadding.paddingW25(context),
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding: CommonPadding.paddingH10(context),
+                              child: Text("News4U",
+                                  textAlign: TextAlign.right, style: TextFontStyle.med(size: context.textPx * 30)),
+                            ),
+                            TextFormWidget(
+                              labelText: "Email",
+                              controller: _emailTextController,
+                              focusNode: _focusEmail,
+                              // keyboardType: TextInputType.emailAddress,
+                              validation: (value) => Validator.validateEmail(
+                                email: value,
                               ),
-                              TextFormWidget(
-                                labelText: "Email",
-                                controller: _emailTextController,
-                                focusNode: _focusEmail,
-                                // keyboardType: TextInputType.emailAddress,
-                                validation: (value) => Validator.validateEmail(
-                                  email: value,
-                                ),
+                            ),
+                            TextFormWidget(
+                              labelText: "Password",
+                              showEyeIcon: true,
+                              controller: _passwordTextController,
+                              focusNode: _focusPassword,
+                              // keyboardType: TextInputType.text,
+                              validation: (value) => Validator.validatePassword(
+                                password: value,
                               ),
-                              TextFormWidget(
-                                labelText: "Password",
-                                showEyeIcon: true,
-                                controller: _passwordTextController,
-                                focusNode: _focusPassword,
-                                // keyboardType: TextInputType.text,
-                                validation: (value) => Validator.validatePassword(
-                                  password: value,
-                                ),
+                            ),
+                            Padding(
+                              padding: CommonPadding.paddingH10(context),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      context.pushNamed(ScreenNames.forgotPasswordScreen);
+                                    },
+                                    child: Text("Forgot Password?",
+                                        textAlign: TextAlign.right,
+                                        style: TextFontStyle.med(size: context.textPx * 14)),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: CommonPadding.paddingH10(context),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        context.pushNamed(ScreenNames.forgotPasswordScreen);
-                                      },
-                                      child: Text("Forgot Password?",
-                                          textAlign: TextAlign.right,
-                                          style: TextFontStyle.med(size: context.textPx * 14)),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              _isProcessing
-                                  ? const CircularProgressIndicator()
-                                  : Padding(
-                                      padding: CommonPadding.paddingH10(context),
-                                      child: CustomButton(
-                                        label: "Sign In",
-                                        onPress: () async {
-                                          _focusEmail.unfocus();
-                                          _focusPassword.unfocus();
+                            ),
+                            _isProcessing
+                                ? const CircularProgressIndicator()
+                                : Padding(
+                              padding: CommonPadding.paddingH10(context),
+                              child: CustomButton(
+                                label: "Sign In",
+                                onPress: () async {
+                                  _focusEmail.unfocus();
+                                  _focusPassword.unfocus();
 
-                                          if (_formKey.currentState!.validate()) {
-                                            setState(() {
-                                              _isProcessing = true;
-                                            });
+                                  if (_formKey.currentState!.validate()) {
+                                    setState(() {
+                                      _isProcessing = true;
+                                    });
 
-                                            User? user = await FireAuth.signInUsingEmailPassword(
-                                              context: context,
-                                              email: _emailTextController.text,
-                                              password: _passwordTextController.text,
-                                            );
+                                    User? user = await FireAuth.signInUsingEmailPassword(
+                                      context: context,
+                                      email: _emailTextController.text,
+                                      password: _passwordTextController.text,
+                                    );
 
-                                            AppSnackBar.showSnackBarWithText(
-                                                context: context, text: "Logged In Successfully...");
-                                            setState(() {
-                                              _isProcessing = false;
-                                            });
+                                    AppSnackBar.showSnackBarWithText(
+                                        context: context, text: "Logged In Successfully...");
+                                    setState(() {
+                                      _isProcessing = false;
+                                    });
 
-                                            if (user != null) {
-                                              context.pushNamed(ScreenNames.homeScreen, arguments: user);
-                                            } else {
-                                              AppSnackBar.showSnackBarWithText(
-                                                  context: context,
-                                                  text: "Login Failed",
-                                                  backgroundColor: AppColor.red);
-                                            }
-                                          }
-                                        },
-                                      ),
-                                    ),
-                              Padding(
-                                padding: CommonPadding.paddingH10(context),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    context.pushNamed(ScreenNames.registrationScreen);
-                                  },
-                                  child: Text("Don't have an Account? Sign Up",
-                                      textAlign: TextAlign.right, style: TextFontStyle.med(size: context.textPx * 14)),
-                                ),
+                                    if (user != null) {
+                                      context.pushNamed(ScreenNames.homeScreen, arguments: user);
+                                    } else {
+                                      AppSnackBar.showSnackBarWithText(
+                                          context: context,
+                                          text: "Login Failed",
+                                          backgroundColor: AppColor.red);
+                                    }
+                                  }
+                                },
                               ),
-                            ],
-                          ),
+                            ),
+                            Padding(
+                              padding: CommonPadding.paddingH10(context),
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.pushNamed(ScreenNames.registrationScreen);
+                                },
+                                child: Text("Don't have an Account? Sign Up",
+                                    textAlign: TextAlign.right, style: TextFontStyle.med(size: context.textPx * 14)),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    )
-                  ],
-                );
-              }
-
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
-          ),
-          floatingActionButton: FloatingActionButton(
-              elevation: 0.0,
-              child: Text(
-                'Skip',
-                textAlign: TextAlign.right,
-                style: TextFontStyle.med(size: context.textPx * 20),
+                    ),
+                  )
+                ],
+              )
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                  onPressed: () {
+                    context.pushNamedReplacement(ScreenNames.homeScreen, arguments: null);
+                  },
+                  child:  Text(
+                          'Skip',
+                          textAlign: TextAlign.right,
+                          style: TextFontStyle.med(size: context.textPx * 20),
+                        ),
+                ),
               ),
-              backgroundColor: AppColor.whiteColor,
-              onPressed: () {
-                context.pushNamedReplacement(ScreenNames.homeScreen, arguments: null);
-              })),
+            )
+          ],
+        ),
     );
   }
 }

@@ -41,6 +41,7 @@ dependencies:
   path_provider: ^2.0.8
   firebase_core: ^1.13.1
   firebase_auth: ^3.3.11
+  shared_preferences: ^2.0.13
 
 
 dev_dependencies:

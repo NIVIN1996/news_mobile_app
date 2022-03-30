@@ -93,8 +93,8 @@ class ArticleListProvider extends ChangeNotifier {
   final List<Article> _myList = [];
   List<Article> get myList => _myList;
 
-  // final List<String> _myTitle = [];
-  // List<String> get myTitle => _myTitle;
+  final List<String> _myTitle = [];
+  List<String> get myTitle => _myTitle;
 
   void addBookmark(Article value) {
     _myList.add(value);

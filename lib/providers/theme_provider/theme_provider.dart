@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/color/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../utils/app_preference/theme_preference.dart';
 import '../../utils/text_style/text_style.dart';
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.light;
+  DarkThemePreferences darkThemePreferences = DarkThemePreferences();
+  bool _darkTheme = false ;
+  bool get darkTheme=>_darkTheme;
 
-  bool get isDarkMode => themeMode == ThemeMode.dark;
-
-  void toggleTheme(bool isOn) {
-    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+  set darkTheme (bool value){
+    _darkTheme = value;
+    darkThemePreferences.setDarkTheme(value);
     notifyListeners();
   }
+
 }
 
 class MyThemes {

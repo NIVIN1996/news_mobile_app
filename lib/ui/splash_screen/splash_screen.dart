@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:news_mobile_app/ui/language_screen/choose_language_screen.dart';
+import 'package:news_mobile_app/ui/login_screen/login_screen.dart';
 
 import '../../utils/text_style/text_style.dart';
 
@@ -16,7 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     //set time to load the new page
     Future.delayed(const Duration(seconds: 10), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const ChooseLanguageScreen()));
+
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
     });
     super.initState();
   }

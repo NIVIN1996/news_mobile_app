@@ -84,7 +84,7 @@ class _NewsCountryListScreenState extends State<NewsCountryListScreen> {
                               publishedAt: provider.countryArticleList[index].publishedAt!,
                               subTitle: provider.countryArticleList[index].content,
                               index: index,
-                              author: provider.countryArticleList[index].source.name,
+                              author: provider.countryArticleList[index].source.name, pageType: 'CountryNews',
                             )
                           : Padding(
                               padding: EdgeInsets.symmetric(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/ui/widgets/app_bar_widget/common_app_bar_widget.dart';
+import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
+import '../../utils/color/colors.dart';
+import '../../utils/text_style/text_style.dart';
 import 'notification_widget/notification_widget.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -15,7 +18,6 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBarWidget(
-
         label: "",
         showNotification: false,
         backPress: () {
@@ -23,9 +25,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
         },
         appBar: AppBar(),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: const [NotificationWidget()],
+      body: Center(
+        child: Text(
+          "No Notification Available",
+          textAlign: TextAlign.center,
+          style: TextFontStyle.med(size: context.textPx * 20, color: AppColor.red),
         ),
       ),
     );

@@ -107,4 +107,16 @@ class ArticleListProvider extends ChangeNotifier {
     print("item removed");
     notifyListeners();
   }
+
+  // void addBookmark(String value) {
+  //   _myTitle.add(value);
+  //   print("item added");
+  //   notifyListeners();
+  // }
+  //
+  // void removeFromList(String value) {
+  //   _myTitle.remove(value);
+  //   print("item removed");
+  //   notifyListeners();
+  // }
 }

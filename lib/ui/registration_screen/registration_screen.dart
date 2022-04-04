@@ -86,6 +86,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     TextFormWidget(
                       labelText: "Name",
                       controller: nameController,
+                      maxLength: 100,
                       validation: (value) => Validator.validateName(
                         name: value,
                       ),
@@ -93,6 +94,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     TextFormWidget(
                       labelText: "Email",
                       controller: emailController,
+                      maxLength: 70,
                       validation: (value) => Validator.validateEmail(
                         email: value,
                       ),
@@ -101,6 +103,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       showEyeIcon: true,
                       labelText: "Password",
                       controller: passwordController,
+                      maxLength: 20,
                       validation: (value) => Validator.validatePassword(
                         password: value,
                       ),
@@ -109,6 +112,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       showEyeIcon: true,
                       labelText: "Confirm Password",
                       controller: confirmPasswordController,
+                      maxLength: 20,
                       validation: (value) {
                         if (passwordController.text.isEmpty) {
                           return 'Please re-enter password';
@@ -124,9 +128,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       child: CustomButton(
                         label: "Sign Up",
                         onPress: () async {
-                          setState(() {
-                            _isProcessing = true;
-                          });
+                          // setState(() {
+                          //   _isProcessing = true;
+                          // });
+                          FocusManager.instance.primaryFocus?.unfocus();
                           if (_registerFormKey.currentState!.validate()) {
                             User? user = await FireAuth.registerUsingEmailPassword(
                               context: context,
@@ -134,28 +139,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               email: emailController.text,
                               password: passwordController.text,
                             );
-                            setState(() {
-                              _isProcessing = false;
-                            });
+                            // setState(() {
+                            //   _isProcessing = false;
+                            // });
 
-                            if (user != null) {
-                              AppSnackBar.showSnackBarWithText(
-                                  context: context,
-                                  text: "Registration Successfully Completed",
-                                  backgroundColor: AppColor.yellow2);
+                            // if (user != null) {
+                            //   AppSnackBar.showSnackBarWithText(
+                            //       context: context,
+                            //       text: "Registration Successfully Completed",
+                            //       backgroundColor: AppColor.yellow2);
+                            //
+                            //   Navigator.of(context).pushAndRemoveUntil(
+                            //     MaterialPageRoute(
+                            //       builder: (context) => HomeScreen(
+                            //         user: user,
+                            //       ),
+                            //     ),
+                            //     ModalRoute.withName('/'),
+                            //   );
+                            // }
 
-                              Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                  builder: (context) => HomeScreen(
-                                    user: user,
-                                  ),
-                                ),
-                                ModalRoute.withName('/'),
-                              );
-                            } else {
-                              AppSnackBar.showSnackBarWithText(
-                                  context: context, text: "Registration Failed", backgroundColor: AppColor.yellow2);
-                            }
                           }
                         },
                       ),

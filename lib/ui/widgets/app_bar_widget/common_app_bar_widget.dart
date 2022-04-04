@@ -53,7 +53,7 @@ class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
                 padding: AppBarSize.tailingPadding(context),
                 child: GestureDetector(
                   onTap: () {
-                    context.pushNamed(ScreenNames.bookmarkListScreen);
+                    context.pushNamed(ScreenNames.notificationScreen);
                   },
                   //! Search icon widget
                   child: Container(child: AppBarSize.notificationIconWidget(context)),

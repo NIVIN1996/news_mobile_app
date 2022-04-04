@@ -17,6 +17,7 @@ class NewsListItemWidget extends StatefulWidget {
   final String title;
   final String author;
   final String subTitle;
+  final String pageType;
   final DateTime publishedAt;
 
   const NewsListItemWidget({
@@ -27,6 +28,7 @@ class NewsListItemWidget extends StatefulWidget {
     required this.subTitle,
     required this.publishedAt,
     required this.author,
+    required this.pageType,
   }) : super(key: key);
 
   @override
@@ -42,11 +44,17 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
     String date = dateFormat.format(widget.publishedAt);
     String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
     var myList = context.watch<ArticleListProvider>().myList;
-    var myTitle = context.watch<ArticleListProvider>().myTitle;
-    var selectedArticle = context.watch<ArticleListProvider>().articleList;
-    var selectedTitle = context.watch<ArticleListProvider>().articleList[widget.index].title;
-    // String myTitle = selectedTitle[widget.index];
-    final article = selectedArticle[widget.index];
+    var selectedArticle = widget.pageType == "HomeNews"
+        ? context.watch<ArticleListProvider>().articleList
+        : widget.pageType == "SearchNews"
+            ? context.watch<ArticleListProvider>().searchArticleList
+            : widget.pageType == "CategoryNews"
+                ? context.watch<ArticleListProvider>().categoryArticleList
+                : widget.pageType == "CountryNews"
+                    ? context.watch<ArticleListProvider>().countryArticleList
+                    : null;
+
+    final article = selectedArticle![widget.index];
 
     return GestureDetector(
       onTap: () {
@@ -58,7 +66,8 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
               imageUrl: widget.imageUrl,
               publishedAt: date + " " + formattedTime,
               subTitle: widget.subTitle,
-              title: widget.title),
+              title: widget.title,
+              pageType: widget.pageType),
         );
       },
       child: Card(
@@ -72,35 +81,33 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
           children: [
             Expanded(
               flex: 2,
-              child: GestureDetector(
-                onTap: () {},
-                child: Padding(
-                  padding: EdgeInsets.only(top:context.widthPx * 15.0,left: context.widthPx * 10.0,right: context.widthPx * 5.0),
-                  child: CachedNetworkImage(
-                    imageUrl: widget.imageUrl,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(context.widthPx * 10),
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                    top: context.widthPx * 15.0, left: context.widthPx * 10.0, right: context.widthPx * 5.0),
+                child: CachedNetworkImage(
+                  imageUrl: widget.imageUrl,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(context.widthPx * 10),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    placeholder: (context, url) => const ShimmerWidget(
-                      radius: 10,
-                    ),
-                    errorWidget: (context, url, error) => Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(context.widthPx * 20),
-                        image: const DecorationImage(
-                          image: AssetImage('assets/common/no_img.png'),
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                    ),
-                    height: context.heightPx * 100,
                   ),
+                  placeholder: (context, url) => const ShimmerWidget(
+                    radius: 10,
+                  ),
+                  errorWidget: (context, url, error) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(context.widthPx * 20),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/common/no_img.png'),
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                  ),
+                  height: context.heightPx * 100,
                 ),
               ),
             ),
@@ -130,8 +137,6 @@ class _NewsListItemWidgetState extends State<NewsListItemWidget> {
                             icon: Icon(myList.contains(article) ? Icons.bookmark : Icons.bookmark_outline,
                                 color: AppColor.yellow2, size: context.widthPx * 20),
                             onPressed: () {
-                              print(selectedTitle);
-
                               if (!myList.contains(article)) {
                                 context.read<ArticleListProvider>().addBookmark(article);
                               } else {

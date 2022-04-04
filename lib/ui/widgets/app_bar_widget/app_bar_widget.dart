@@ -42,6 +42,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: Builder(builder: (context) {
         return GestureDetector(
           onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
             Scaffold.of(context).openDrawer();
           },
           child: Container(padding: AppBarSize.leadingPadding(context), child: AppBarSize.menuIconWidget(context)),
@@ -55,7 +56,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           child: GestureDetector(
             onTap: notificationPress ??
                 () {
-                  context.pushNamed(ScreenNames.bookmarkListScreen);
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  context.pushNamed(ScreenNames.notificationScreen);
                 },
             //! Search icon widget
             child: Container(child: AppBarSize.notificationIconWidget(context)),

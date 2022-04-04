@@ -42,6 +42,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 image: "assets/icons/politics.png",
                 gridColor: AppColor.green3,
                 onPress: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   context.pushNamed(
                     ScreenNames.newsCategoryListScreen,
                     arguments: CategoryNewsNavigationParameters(
@@ -59,6 +60,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 image: "assets/icons/stats.png",
                 gridColor: AppColor.orange,
                 onPress: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   context.pushNamed(
                     ScreenNames.newsCategoryListScreen,
                     arguments: CategoryNewsNavigationParameters(
@@ -82,6 +84,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 image: "assets/icons/sport.png",
                 gridColor: AppColor.primaryColor3,
                 onPress: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   context.pushNamed(
                     ScreenNames.newsCategoryListScreen,
                     arguments: CategoryNewsNavigationParameters(
@@ -99,6 +102,7 @@ class _CategoryWidgetState extends State<CategoryWidget> {
                 image: "assets/icons/cinema.png",
                 gridColor: AppColor.yellow2,
                 onPress: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
                   context.pushNamed(
                     ScreenNames.newsCategoryListScreen,
                     arguments: CategoryNewsNavigationParameters(

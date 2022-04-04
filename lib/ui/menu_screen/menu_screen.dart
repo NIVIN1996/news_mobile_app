@@ -196,6 +196,12 @@ class _MenuScreenState extends State<MenuScreen> {
               onTap: () {},
             ),
             ListTile(
+              title: Text('Bookmark', style: TextFontStyle.med(size: context.textPx * 20)),
+              onTap: () {
+                context.pushNamed(ScreenNames.bookmarkListScreen);
+              },
+            ),
+            ListTile(
               title: Text('Terms and Conditions', style: TextFontStyle.med(size: context.textPx * 20)),
               onTap: () {
                 context.pushNamed(ScreenNames.termsAndConditionScreen);

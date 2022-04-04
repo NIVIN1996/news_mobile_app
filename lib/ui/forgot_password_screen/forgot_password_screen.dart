@@ -77,6 +77,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   TextFormWidget(
                     labelText: "Email",
                     controller: emailController,
+                    maxLength: 70,
                   ),
                   Padding(
                     padding: CommonPadding.paddingH10(context),

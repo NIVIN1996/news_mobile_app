@@ -25,8 +25,17 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     var myList = context.watch<ArticleListProvider>().myList;
-    var selectedArticle = context.watch<ArticleListProvider>().articleList;
-    final article = selectedArticle[widget.navigationParameters.index];
+    print(widget.navigationParameters.pageType);
+    var selectedArticle = widget.navigationParameters.pageType == "HomeNews"
+        ? context.watch<ArticleListProvider>().articleList
+        : widget.navigationParameters.pageType == "SearchNews"
+        ? context.watch<ArticleListProvider>().searchArticleList
+        : widget.navigationParameters.pageType == "CategoryNews"
+        ? context.watch<ArticleListProvider>().categoryArticleList
+        : widget.navigationParameters.pageType == "CountryNews"
+        ? context.watch<ArticleListProvider>().countryArticleList
+        : null;
+    final article = selectedArticle![widget.navigationParameters.index];
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -87,7 +96,6 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
                         icon: Icon(myList.contains(article) ? Icons.bookmark : Icons.bookmark_outline,
                             color: AppColor.yellow2, size: context.widthPx * 30),
                         onPressed: () {
-                          final article = selectedArticle[widget.navigationParameters.index];
 
                           if (!myList.contains(article)) {
                             context.read<ArticleListProvider>().addBookmark(article);

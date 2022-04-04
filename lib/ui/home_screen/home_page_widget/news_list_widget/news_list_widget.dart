@@ -60,7 +60,7 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                             publishedAt: provider.topHeadlineNewsModel!.articles[index].publishedAt!,
                             subTitle: provider.topHeadlineNewsModel!.articles[index].content,
                             index: index,
-                            author: provider.topHeadlineNewsModel!.articles[index].source.name,
+                            author: provider.topHeadlineNewsModel!.articles[index].source.name, pageType: "HomeNews",
                           )
                         : Padding(
                             padding: EdgeInsets.symmetric(

@@ -20,7 +20,7 @@ import 'home_page_widget/news_list_widget/news_list_item_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   final User? user;
-  const HomeScreen({Key? key, required this.user }) : super(key: key);
+  const HomeScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -41,6 +41,11 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  FocusNode inputNode = FocusNode();
+// to open keyboard call this function;
+  void openKeyboard() {
+    FocusScope.of(context).requestFocus(inputNode);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +54,15 @@ class _HomeScreenState extends State<HomeScreen> {
     final style = _searchTextEditingController.text.isEmpty ? styleHint : styleActive;
 
     return Scaffold(
-      drawer:  MenuScreen(currentUser:_currentUser),
+      drawer: MenuScreen(currentUser: _currentUser),
       appBar: AppBarWidget(
         menuPress: () {
+          FocusManager.instance.primaryFocus?.unfocus();
           Scaffold.of(context).openDrawer();
         },
         notificationPress: () {
-          context.pushNamed(ScreenNames.bookmarkListScreen);
+          FocusManager.instance.primaryFocus?.unfocus();
+          context.pushNamed(ScreenNames.notificationScreen);
         },
         appBar: AppBar(),
       ),
@@ -78,6 +85,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       flex: 3,
                       child: TextField(
                         controller: _searchTextEditingController,
+                        autofocus: false,
+                        focusNode: inputNode,
                         decoration: InputDecoration(
                           icon: Icon(Icons.search, color: style.color),
                           contentPadding: EdgeInsets.symmetric(
@@ -158,6 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     author: _searchTextEditingController.text.isEmpty
                                         ? provider.articleList[index].source.name
                                         : provider.searchArticleList[index].source.name,
+                                    pageType: _searchTextEditingController.text.isEmpty ? "HomeNews" : "SearchNews",
                                   )
                                 : Padding(
                                     padding: EdgeInsets.symmetric(
@@ -179,8 +189,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-
-
-
 }

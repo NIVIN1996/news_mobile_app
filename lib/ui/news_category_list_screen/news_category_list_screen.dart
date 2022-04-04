@@ -90,7 +90,7 @@ class _NewsCategoryListScreenState extends State<NewsCategoryListScreen> {
                         publishedAt: provider.categoryArticleList[index].publishedAt!,
                         subTitle: provider.categoryArticleList[index].content,
                         index: index,
-                        author: provider.categoryArticleList[index].source.name,
+                        author: provider.categoryArticleList[index].source.name, pageType: 'CategoryNews',
                       )
                           : Padding(
                         padding: EdgeInsets.symmetric(

@@ -11,6 +11,7 @@ import 'package:news_mobile_app/ui/rate_us_screen/rate_us_screen.dart';
 import 'package:news_mobile_app/ui/terms_and_condition_screen/terms_and_condition_screen.dart';
 import '../../models/category_model/category_model_navigation_params.dart';
 import '../../models/country_based_news_model.dart';
+import '../bookmark_list_screen/bookmark_details_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../language_screen/choose_language_screen.dart';
 import '../news_category_list_screen/news_category_list_screen.dart';
@@ -36,6 +37,7 @@ class ScreenNames {
   static const String profileScreen = "ui/profile_screen/profile_screen";
   static const String newsCountryListScreen = "ui/news_country_list_Screen/news_country_list_Screen";
   static const String bookmarkListScreen = "ui/bookmark_list_screen/bookmark_list_screen";
+  static const String bookmarkNewsDetailsScreen = "ui/bookmark_list_screen/bookmark_news_details_screen";
 }
 
 Route<dynamic> generateRoute(RouteSettings settings) {
@@ -63,6 +65,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           builder: (context) => NewsDetailsScreen(
             navigationParameters: settings.arguments as NewsDetailsNavigationParameters,
               ));
+    case ScreenNames.bookmarkNewsDetailsScreen:
+      return MaterialPageRoute(
+          builder: (context) => BookmarkNewsDetailsScreen(
+            navigationParameters: settings.arguments as NewsDetailsNavigationParameters,
+          ));
     case ScreenNames.termsAndConditionScreen:
       return MaterialPageRoute(builder: (context) => const TermsAndConditionScreen());
     case ScreenNames.newsCategoryListScreen:

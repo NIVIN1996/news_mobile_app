@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:news_mobile_app/ui/home_screen/home_screen.dart';
 import 'package:news_mobile_app/ui/login_screen/validator.dart';
 import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
@@ -10,7 +9,6 @@ import '../../utils/common_padding/common_padding.dart';
 import '../../utils/text_style/text_style.dart';
 import '../navigation/routes.dart';
 import '../widgets/button_widget/custom_button_widget.dart';
-import '../widgets/snackbar_widget/snackbar_widget.dart';
 import '../widgets/text_form_widget/text_form_widget.dart';
 import 'fire_auth.dart';
 

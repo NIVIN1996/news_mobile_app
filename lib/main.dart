@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -6,7 +8,10 @@ import 'package:news_mobile_app/providers/common_function_provider/provider_list
 import 'package:news_mobile_app/providers/theme_provider/theme_provider.dart';
 import 'package:news_mobile_app/ui/splash_screen/splash_screen.dart';
 import 'package:news_mobile_app/ui/navigation/routes.dart' as router;
+import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:provider/provider.dart';
+
+import 'models/top_news_headline_model/source_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +19,15 @@ Future<void> main() async {
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark));
-  await Hive.initFlutter();
-  if (!Hive.isAdapterRegistered(ArticleAdapter().typeId)) {
-    Hive.registerAdapter(ArticleAdapter());
-  }
+  Directory directory = await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
+  Hive.registerAdapter(ArticleAdapter());
+  Hive.registerAdapter(SourceAdapter());
+
+    // Box box =await Hive.openBox("test data");
+    // await box.put("1", "sample");
+    // print(await box.get("1"));
+
   runApp(MultiProvider(providers: ProviderRegistrar.providers, child: const MyApp()));
 }
 

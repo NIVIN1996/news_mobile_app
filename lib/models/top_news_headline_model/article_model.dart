@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
-import 'package:news_mobile_app/models/top_news_headline_model/top_news_headline_model.dart';
+import 'package:news_mobile_app/models/top_news_headline_model/source_model.dart';
 part 'article_model.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 1)
 class Article {
   @HiveField(0)
   final Source source;

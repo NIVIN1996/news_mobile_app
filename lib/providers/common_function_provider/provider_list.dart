@@ -6,7 +6,7 @@ import '../sample_provider.dart';
 
 class ProviderRegistrar {
   static List<SingleChildWidget> providers = [
-    ChangeNotifierProvider(create: (_) => MovieProvider()),
+    // ChangeNotifierProvider(create: (_) => MovieProvider()),
     ChangeNotifierProvider(create: (_) => ArticleListProvider()),
   ];
 }

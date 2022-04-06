@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:news_mobile_app/models/top_news_headline_model/article_model.dart';
 import 'package:news_mobile_app/models/top_news_headline_model/top_news_headline_model.dart';
 import '../../services/api_services/country_news_service/country_news_service.dart';
 import '../../services/api_services/news_list_services/news_list_services.dart';
 import '../../services/api_services/search_news_service/search_news_service.dart';
+import '../../services/db/hive_helper.dart';
 import '../../utils/static/enums.dart';
+import '../../utils/static/static_string_keyword.dart';
 
 class ArticleListProvider extends ChangeNotifier {
   TopHeadlineNewsModel? topHeadlineNewsModel;
@@ -16,12 +19,15 @@ class ArticleListProvider extends ChangeNotifier {
   List<Article> categoryArticleList =[];
   List<Article> searchArticleList =[];
   List<Article> countryArticleList =[];
+  List<Article> bookmarkArticleList =[];
 
   ApiStatus articleInitStatus = ApiStatus.none;
   ApiStatus articleLoaderStatus = ApiStatus.none;
 
   String apiErrors = "";
   String title ="";
+
+  Box? articleBox;
 
   //get all news articles
   Future<ApiStatus> getArticle() async {
@@ -47,7 +53,7 @@ class ArticleListProvider extends ChangeNotifier {
     if (categoryNewsModel!.status == "ok") {
       articleInitStatus = ApiStatus.success;
       categoryArticleList =categoryNewsModel!.articles;
-      print("......categoryArticleList..............$categoryArticleList");
+      // print("......categoryArticleList..............$categoryArticleList");
     } else {
       articleInitStatus = ApiStatus.error;
       apiErrors = categoryNewsModel!.status;
@@ -64,7 +70,7 @@ class ArticleListProvider extends ChangeNotifier {
     if (searchNewsModel!.status == "ok") {
       articleInitStatus = ApiStatus.success;
       searchArticleList =searchNewsModel!.articles;
-      print("......searchList..............$searchArticleList");
+      // print("......searchList..............$searchArticleList");
     } else {
       articleInitStatus = ApiStatus.error;
       apiErrors = searchNewsModel!.status;
@@ -81,7 +87,7 @@ class ArticleListProvider extends ChangeNotifier {
     if (countryNewsModel!.status == "ok") {
       articleInitStatus = ApiStatus.success;
       countryArticleList =countryNewsModel!.articles;
-      print("......countryList..............$countryArticleList");
+      // print("......countryList..............$countryArticleList");
     } else {
       articleInitStatus = ApiStatus.error;
       apiErrors = countryNewsModel!.status;
@@ -90,33 +96,55 @@ class ArticleListProvider extends ChangeNotifier {
     return articleInitStatus;
   }
 
+  ///Local Db
+  Future<void> _initHive() async {
+    Box? box = await HiveHelper.openBox(StaticKeys.articleLocalDbLocation);
+    if (box != null) {
+      articleBox = box;
+    }
+  }
+
   final List<Article> _myList = [];
   List<Article> get myList => _myList;
 
-  final List<String> _myTitle = [];
-  List<String> get myTitle => _myTitle;
 
-  void addBookmark(Article value) {
-    _myList.add(value);
-    print("item added");
-    notifyListeners();
-  }
 
-  void removeFromList(Article value) {
-    _myList.remove(value);
-    print("item removed");
-    notifyListeners();
-  }
-
-  // void addBookmark(String value) {
-  //   _myTitle.add(value);
+  // void addBookmark(Article value) {
+  //   _myList.add(value);
   //   print("item added");
   //   notifyListeners();
   // }
+
+  // void getBookmarkListDb()async{
+  //   await _initHive();
+  //   bookmarkArticleList =HiveHelper.getAll(box: articleBox!).cast<Article>();
   //
-  // void removeFromList(String value) {
-  //   _myTitle.remove(value);
-  //   print("item removed");
-  //   notifyListeners();
   // }
+  Future<ApiStatus> getBookmarkListDb() async {
+    await _initHive();
+    bookmarkArticleList = HiveHelper.getAll(box: articleBox!).cast<Article>();
+    notifyListeners();
+    return ApiStatus.success;
+  }
+
+  void addBookmark(Article value) async{
+    // _myList.add(value);
+    print("item added");
+    await _initHive();
+    await HiveHelper.addToDb(box: articleBox!, title: value.title, data: value);
+    await getBookmarkListDb();
+    notifyListeners();
+  }
+
+  void removeFromList(Article value) async{
+    // _myList.remove(value);
+    print("item removed");
+    await _initHive();
+    await HiveHelper.removeFromDb(title:value.title, box: articleBox!);
+    await getBookmarkListDb();
+    notifyListeners();
+  }
+
+
+
 }

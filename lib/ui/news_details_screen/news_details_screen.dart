@@ -7,6 +7,8 @@ import '../../models/news_details_model/news_details_navigation_params.dart';
 import '../../providers/news_list_provider/news_list_provider.dart';
 import '../../utils/color/colors.dart';
 import '../../utils/text_style/text_style.dart';
+import '../widgets/loader/loader_widget.dart';
+import '../widgets/snackbar_widget/snackbar_widget.dart';
 
 class NewsDetailsScreen extends StatefulWidget {
   final NewsDetailsNavigationParameters navigationParameters;
@@ -36,8 +38,9 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
         ? context.watch<ArticleListProvider>().countryArticleList
         : null;
     final article = selectedArticle![widget.navigationParameters.index];
+    final articleDb = context.watch<ArticleListProvider>().articleBox;
     return Scaffold(
-      body: SingleChildScrollView(
+      body:articleDb !=null? SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,14 +96,16 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
                             child: Icon(Icons.share, color: AppColor.grey5, size: context.widthPx * 30),
                           )),
                       IconButton(
-                        icon: Icon(myList.contains(article) ? Icons.bookmark : Icons.bookmark_outline,
+                        icon: Icon(articleDb.containsKey(article.title) ? Icons.bookmark : Icons.bookmark_outline,
                             color: AppColor.yellow2, size: context.widthPx * 30),
                         onPressed: () {
 
-                          if (!myList.contains(article)) {
+                          if (!articleDb.containsKey(article.title)) {
                             context.read<ArticleListProvider>().addBookmark(article);
+                            AppSnackBar.showSnackBarWithText(context: context, text: "Added To Bookmark");
                           } else {
                             context.read<ArticleListProvider>().removeFromList(article);
+                            AppSnackBar.showSnackBarWithText(context: context, text: "Removed From Bookmark");
                           }
                         },
                       ),
@@ -135,6 +140,8 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
             ),
           ],
         ),
+      ):const Center(
+        child: LoaderWidget(),
       ),
     );
   }

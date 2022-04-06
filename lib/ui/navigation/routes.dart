@@ -10,7 +10,7 @@ import 'package:news_mobile_app/ui/notification_screen/notification_screen.dart'
 import 'package:news_mobile_app/ui/rate_us_screen/rate_us_screen.dart';
 import 'package:news_mobile_app/ui/terms_and_condition_screen/terms_and_condition_screen.dart';
 import '../../models/category_model/category_model_navigation_params.dart';
-import '../../models/country_based_news_model.dart';
+import '../../models/country_based_news_model/country_based_news_model.dart';
 import '../bookmark_list_screen/bookmark_details_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../language_screen/choose_language_screen.dart';

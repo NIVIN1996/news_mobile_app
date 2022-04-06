@@ -11,6 +11,7 @@ import '../../../models/news_details_model/news_details_navigation_params.dart';
 import '../../../models/top_news_headline_model/article_model.dart';
 import '../../../providers/news_list_provider/news_list_provider.dart';
 import '../../navigation/routes.dart';
+import '../../widgets/snackbar_widget/snackbar_widget.dart';
 
 class BookmarkItemWidget extends StatefulWidget {
   final int index;
@@ -49,6 +50,7 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
     String date = dateFormat.format(widget.publishedAt);
     String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
     final _myList = context.watch<ArticleListProvider>().myList;
+    final _bookmarkList = context.watch<ArticleListProvider>().bookmarkArticleList;
     return GestureDetector(
       onTap: () {
         context.pushNamed(
@@ -127,9 +129,10 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
                           ),
                           GestureDetector(
                               onTap: () {
-                                final data = _myList[widget.index];
-
-                                context.read<ArticleListProvider>().removeFromList(data);
+                                // final data = _myList[widget.index];
+                                final bookmarkData =_bookmarkList[widget.index];
+                                context.read<ArticleListProvider>().removeFromList(bookmarkData);
+                                AppSnackBar.showSnackBarWithText(context: context, text: "Removed From Bookmark");
                               },
                               child: Icon(Icons.close, color: AppColor.red, size: context.widthPx * 20)),
                         ],

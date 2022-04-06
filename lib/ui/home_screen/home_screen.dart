@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           for (int i = 0; i < 4; i++)
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
+                                  horizontal: context.widthPx * 25.0, vertical: context.heightPx * 5),
                               child: ShimmerWidget(
                                 height: context.heightPx * 140,
                                 width: double.infinity,
@@ -137,49 +137,47 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       );
                     }
-                    return Container(
-                      padding: EdgeInsets.symmetric(vertical: context.heightPx * 5.0),
-                      child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.vertical,
-                          itemCount: provider.articleInitStatus == ApiStatus.success
-                              ? (_searchTextEditingController.text.isEmpty
-                                  ? provider.articleList.length
-                                  : provider.searchArticleList.length)
-                              : 5,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return provider.articleInitStatus == ApiStatus.success
-                                ? NewsListItemWidget(
-                                    title: _searchTextEditingController.text.isEmpty
-                                        ? provider.articleList[index].title
-                                        : provider.searchArticleList[index].title,
-                                    imageUrl: _searchTextEditingController.text.isEmpty
-                                        ? provider.articleList[index].urlToImage
-                                        : provider.searchArticleList[index].urlToImage,
-                                    publishedAt: _searchTextEditingController.text.isEmpty
-                                        ? provider.articleList[index].publishedAt!
-                                        : provider.searchArticleList[index].publishedAt!,
-                                    subTitle: _searchTextEditingController.text.isEmpty
-                                        ? provider.articleList[index].content
-                                        : provider.searchArticleList[index].content,
-                                    index: index,
-                                    author: _searchTextEditingController.text.isEmpty
-                                        ? provider.articleList[index].source.name
-                                        : provider.searchArticleList[index].source.name,
-                                    pageType: _searchTextEditingController.text.isEmpty ? "HomeNews" : "SearchNews",
-                                  )
-                                : Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
-                                    child: ShimmerWidget(
-                                      height: context.heightPx * 140,
-                                      width: context.widthPx * 100,
-                                      radius: 10,
-                                    ),
-                                  );
-                          }),
-                    );
+                    return ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        scrollDirection: Axis.vertical,
+                        itemCount: provider.articleInitStatus == ApiStatus.success
+                            ? (_searchTextEditingController.text.isEmpty
+                                ? provider.articleList.length
+                                : provider.searchArticleList.length)
+                            : 5,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return provider.articleInitStatus == ApiStatus.success
+                              ? NewsListItemWidget(
+                                  title: _searchTextEditingController.text.isEmpty
+                                      ? provider.articleList[index].title
+                                      : provider.searchArticleList[index].title,
+                                  imageUrl: _searchTextEditingController.text.isEmpty
+                                      ? provider.articleList[index].urlToImage
+                                      : provider.searchArticleList[index].urlToImage,
+                                  publishedAt: _searchTextEditingController.text.isEmpty
+                                      ? provider.articleList[index].publishedAt!
+                                      : provider.searchArticleList[index].publishedAt!,
+                                  subTitle: _searchTextEditingController.text.isEmpty
+                                      ? provider.articleList[index].content
+                                      : provider.searchArticleList[index].content,
+                                  index: index,
+                                  author: _searchTextEditingController.text.isEmpty
+                                      ? provider.articleList[index].source.name
+                                      : provider.searchArticleList[index].source.name,
+                                  pageType: _searchTextEditingController.text.isEmpty ? "HomeNews" : "SearchNews",
+                                )
+                              :
+                          Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: context.widthPx * 25.0, vertical: context.heightPx * 5),
+                                  child: ShimmerWidget(
+                                    height: context.heightPx * 140,
+                                    width: double.infinity,
+                                    radius: 10,
+                                  ),
+                                );
+                        });
                   }),
                 ],
               ),

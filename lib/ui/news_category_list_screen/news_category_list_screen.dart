@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:provider/provider.dart';
 
-
 import '../../models/category_model/category_model_navigation_params.dart';
 
 import '../../providers/news_list_provider/news_list_provider.dart';
@@ -32,6 +31,7 @@ class _NewsCategoryListScreenState extends State<NewsCategoryListScreen> {
       context.read<ArticleListProvider>().getCategoryArticle(widget.navigationParameters.category);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +63,7 @@ class _NewsCategoryListScreenState extends State<NewsCategoryListScreen> {
                     for (int i = 0; i < 4; i++)
                       Padding(
                         padding:
-                        EdgeInsets.symmetric(horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
+                            EdgeInsets.symmetric(horizontal: context.widthPx * 25.0, vertical: context.heightPx * 5),
                         child: ShimmerWidget(
                           height: context.heightPx * 140,
                           width: double.infinity,
@@ -73,36 +73,33 @@ class _NewsCategoryListScreenState extends State<NewsCategoryListScreen> {
                   ],
                 );
               }
-              return Container(
-                padding: EdgeInsets.symmetric(vertical: context.heightPx * 5.0),
-                child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    itemCount: provider.articleInitStatus == ApiStatus.success
-                        ? provider.categoryArticleList.length
-                        : 5,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return provider.articleInitStatus == ApiStatus.success
-                          ? NewsListItemWidget(
-                        title: provider.categoryArticleList[index].title,
-                        imageUrl: provider.categoryArticleList[index].urlToImage,
-                        publishedAt: provider.categoryArticleList[index].publishedAt!,
-                        subTitle: provider.categoryArticleList[index].content,
-                        index: index,
-                        author: provider.categoryArticleList[index].source.name, pageType: 'CategoryNews',
-                      )
-                          : Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: context.widthPx * 25.0, vertical: context.heightPx * 10),
-                        child: ShimmerWidget(
-                          height: context.heightPx * 140,
-                          width: context.widthPx * 100,
-                          radius: 10,
-                        ),
-                      );
-                    }),
-              );
+              return ListView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemCount:
+                      provider.articleInitStatus == ApiStatus.success ? provider.categoryArticleList.length : 5,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return provider.articleInitStatus == ApiStatus.success
+                        ? NewsListItemWidget(
+                            title: provider.categoryArticleList[index].title,
+                            imageUrl: provider.categoryArticleList[index].urlToImage,
+                            publishedAt: provider.categoryArticleList[index].publishedAt!,
+                            subTitle: provider.categoryArticleList[index].content,
+                            index: index,
+                            author: provider.categoryArticleList[index].source.name,
+                            pageType: 'CategoryNews',
+                          )
+                        : Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: context.widthPx * 25.0, vertical: context.heightPx * 5),
+                            child: ShimmerWidget(
+                              height: context.heightPx * 140,
+                              width: context.widthPx * 100,
+                              radius: 10,
+                            ),
+                          );
+                  });
             }),
           ],
         ),

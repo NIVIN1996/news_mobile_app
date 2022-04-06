@@ -16,8 +16,17 @@ class BookmarkListScreen extends StatefulWidget {
 
 class _BookmarkListScreenState extends State<BookmarkListScreen> {
   @override
+  void initState() {
+    Future.delayed(Duration.zero, () {
+    context.read<ArticleListProvider>().getBookmarkListDb();
+  });
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     final _myList = context.watch<ArticleListProvider>().myList;
+    final _bookmarkList = context.watch<ArticleListProvider>().bookmarkArticleList;
+
 
     return Scaffold(
       appBar: CommonAppBarWidget(
@@ -29,7 +38,7 @@ class _BookmarkListScreenState extends State<BookmarkListScreen> {
         notificationPress: () {},
         appBar: AppBar(),
       ),
-      body: _myList.isNotEmpty
+      body: _bookmarkList.isNotEmpty
           ? SingleChildScrollView(
               physics: const ScrollPhysics(),
               child: Container(
@@ -37,22 +46,26 @@ class _BookmarkListScreenState extends State<BookmarkListScreen> {
                 child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
-                    itemCount: _myList.length,
+                    itemCount: _bookmarkList.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      final data = _myList[index];
-                      print(data);
+                      // final data = _myList[index];
+                      // print(data);
+                      print("................");
+                      print(_bookmarkList.length);
+                      print(_bookmarkList[index].title);
+                      final bookmarkData =_bookmarkList[index];
 
                       return BookmarkItemWidget(
-                        title: data.title,
-                        imageUrl: data.urlToImage,
-                        subTitle: data.content,
+                        title: bookmarkData.title,
+                        imageUrl: bookmarkData.urlToImage,
+                        subTitle: bookmarkData.content,
                         index: index,
-                        url: data.url,
-                        content: data.description,
-                        author: data.source.name,
-                        currentArticle: data,
-                        publishedAt: data.publishedAt!,
+                        url: bookmarkData.url,
+                        content: bookmarkData.description,
+                        author: bookmarkData.source.name,
+                        currentArticle: bookmarkData,
+                        publishedAt: bookmarkData.publishedAt!,
                       );
                     }),
               ))

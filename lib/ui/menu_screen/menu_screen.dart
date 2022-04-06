@@ -5,7 +5,7 @@ import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:news_mobile_app/utils/text_style/text_case.dart';
 import '../../models/category_model/category_model_navigation_params.dart';
-import '../../models/country_based_news_model.dart';
+import '../../models/country_based_news_model/country_based_news_model.dart';
 import '../../providers/theme_provider/theme_provider.dart';
 import '../../utils/color/colors.dart';
 import '../../utils/text_style/text_style.dart';

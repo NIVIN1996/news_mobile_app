@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/utils/color/colors.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../utils/app_preference/theme_preference.dart';
 import '../../utils/text_style/text_style.dart';
 

@@ -23,17 +23,4 @@ class TopHeadlineNewsModel {
 }
 
 
-class Source {
-  Source({
-    required this.id,
-    required this.name,
-  });
 
-  String id;
-  String name;
-
-  factory Source.fromJson(Map<String, dynamic> json) => Source(
-        id: (json["id"] == null) ? "" : json["id"],
-        name: json["name"] ?? "",
-      );
-}

@@ -7,12 +7,11 @@ import 'package:news_mobile_app/utils/common_padding/common_padding.dart';
 import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 
-import '../home_screen/home_screen.dart';
 import '../login_screen/fire_auth.dart';
 import '../login_screen/validator.dart';
 import '../navigation/routes.dart';
 import '../../utils/text_style/text_style.dart';
-import '../widgets/snackbar_widget/snackbar_widget.dart';
+
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -32,7 +31,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _focusEmail = FocusNode();
   final _focusPassword = FocusNode();
 
-  bool _isProcessing = false;
   @override
   void initState() {
     emailController = TextEditingController();
@@ -139,25 +137,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               email: emailController.text,
                               password: passwordController.text,
                             );
-                            // setState(() {
-                            //   _isProcessing = false;
-                            // });
 
-                            // if (user != null) {
-                            //   AppSnackBar.showSnackBarWithText(
-                            //       context: context,
-                            //       text: "Registration Successfully Completed",
-                            //       backgroundColor: AppColor.yellow2);
-                            //
-                            //   Navigator.of(context).pushAndRemoveUntil(
-                            //     MaterialPageRoute(
-                            //       builder: (context) => HomeScreen(
-                            //         user: user,
-                            //       ),
-                            //     ),
-                            //     ModalRoute.withName('/'),
-                            //   );
-                            // }
+
 
                           }
                         },

@@ -18,10 +18,8 @@ class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
     required this.appBar,
     this.backPress,
     this.notificationPress,
-
     this.showNotification = true,
     this.label = "",
-
   }) : super(key: key);
 
   @override
@@ -46,7 +44,6 @@ class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
         );
       }),
       actions: [
-
         showNotification == true
             ? Padding(
                 //! trailing padding
@@ -59,7 +56,10 @@ class CommonAppBarWidget extends StatelessWidget implements PreferredSizeWidget 
                   child: Container(child: AppBarSize.notificationIconWidget(context)),
                 ),
               )
-            : const SizedBox(),
+            : Padding(
+                padding: AppBarSize.emptyTailingPadding(context),
+                child: const SizedBox(),
+              ),
       ],
       centerTitle: true,
     );

@@ -31,13 +31,6 @@ class HiveHelper {
     }
   }
 
-  // static Future<void> selectedFromDb({required Box box, required String title}) async {
-  //   try {
-  //     await box.delete(title);
-  //   } catch (e) {
-  //     debugPrint(e.toString());
-  //   }
-  // }
 
   static Future<void> deleteBox(Box box) async {
     try {

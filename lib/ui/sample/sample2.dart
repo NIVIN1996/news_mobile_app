@@ -1,48 +1,80 @@
-// // screens/my_list_screen.dart
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-//
-// import '../../providers/sample_provider.dart';
-//
-// class MyListScreen extends StatefulWidget {
-//   const MyListScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   _MyListScreenState createState() => _MyListScreenState();
-// }
-//
-// class _MyListScreenState extends State<MyListScreen> {
-//   @override
-//   Widget build(BuildContext context) {
-//     final _myList = context
-//         .watch<MovieProvider>()
-//         .myList;
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("My List (${_myList.length})"),
-//       ),
-//       body: ListView.builder(
-//           itemCount: _myList.length,
-//           itemBuilder: (_, index) {
-//             final currentMovie = _myList[index];
-//             return Card(
-//               key: ValueKey(currentMovie.title),
-//               elevation: 4,
-//               child: ListTile(
-//                 title: Text(currentMovie.title),
-//                 subtitle: Text(currentMovie.runtime ?? ''),
-//                 trailing: TextButton(
-//                   child: const Text(
-//                     'Remove',
-//                     style: TextStyle(color: Colors.red),
-//                   ),
-//                   onPressed: () {
-//                     context.read<MovieProvider>().removeFromList(currentMovie);
-//                   },
-//                 ),
-//               ),
-//             );
-//           }),
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
+
+void main() {
+  runApp(const SampleApp());
+}
+
+class SampleApp extends StatefulWidget {
+  const SampleApp({Key? key}) : super(key: key);
+
+  @override
+  SampleAppState createState() => SampleAppState();
+}
+
+class SampleAppState extends State<SampleApp> {
+  String text = '';
+  String link = '';
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      color: Colors.green,
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Share Plus',
+      theme: ThemeData(primarySwatch: Colors.green),
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('GeeksForGeeks'),
+            backgroundColor: Colors.green,
+            centerTitle: true,
+          ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  TextField(
+                    decoration: const InputDecoration(
+                      labelText: 'Text:',
+                      hintText: 'Enter anything to share',
+                    ),
+                    maxLines: 2,
+                    onChanged: (String value) => setState(() {
+                      text = value;
+                    }),
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(
+                      labelText: 'Subject:',
+                      hintText: 'Enter subject to share',
+                    ),
+                    maxLines: 2,
+                    onChanged: (String value) => setState(() {
+                      link = value;
+                    }),
+                  ),
+                  const Padding(padding: EdgeInsets.only(top: 12.0)),
+                  Builder(
+                    builder: (BuildContext context) {
+                      return ElevatedButton(
+                        onPressed:
+                        text.isEmpty ? null : () => _onShare(context),
+                        child: const Text('Share'),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          )),
+    );
+  }
+
+  void _onShare(BuildContext context) async {
+    final box = context.findRenderObject() as RenderBox?;
+    await Share.share(text,
+        subject: link,
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  }
+}

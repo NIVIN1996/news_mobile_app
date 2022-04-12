@@ -38,7 +38,7 @@ class AppBarSize {
   static double leadingPaddingSize(BuildContext context) {
     double pad = context.widthPx * 20;
     if (context.screenWidth > 600) {
-      pad = 10;
+      pad = 30;
     }
     return pad;
   }
@@ -57,9 +57,22 @@ class AppBarSize {
     return pad;
   }
 
+  static double emptyTailingPaddingSize(BuildContext context) {
+    double pad = context.widthPx * 50;
+    if (context.screenWidth > 600) {
+      pad = 45;
+    }
+    return pad;
+  }
+
   static EdgeInsets tailingPadding(BuildContext context) {
     return EdgeInsets.only(
       right: AppBarSize.tailingPaddingSize(context),
+    );
+  }
+  static EdgeInsets emptyTailingPadding(BuildContext context) {
+    return EdgeInsets.only(
+      right: AppBarSize.emptyTailingPaddingSize(context),
     );
   }
 

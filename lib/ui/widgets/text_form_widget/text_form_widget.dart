@@ -69,6 +69,7 @@ class _TextFormWidgetState extends State<TextFormWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: widget.controller,
             maxLines: widget.line,
             enabled: widget.edit,

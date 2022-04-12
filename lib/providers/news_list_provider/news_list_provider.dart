@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:news_mobile_app/models/top_news_headline_model/article_model.dart';
@@ -15,18 +17,28 @@ class ArticleListProvider extends ChangeNotifier {
   TopHeadlineNewsModel? searchNewsModel;
   TopHeadlineNewsModel? countryNewsModel;
 
-  List<Article> articleList =[];
-  List<Article> categoryArticleList =[];
-  List<Article> searchArticleList =[];
-  List<Article> countryArticleList =[];
-  List<Article> bookmarkArticleList =[];
+  List<Article> articleList = [];
+  List<Article> categoryArticleList = [];
+  List<Article> searchArticleList = [];
+  List<Article> countryArticleList = [];
+  List<Article> bookmarkArticleList = [];
 
   ApiStatus articleInitStatus = ApiStatus.none;
   ApiStatus articleLoaderStatus = ApiStatus.none;
 
   String apiErrors = "";
-  String title ="";
+  String title = "";
 
+  int currentPage = 1;
+  int countryCurrentPage = 1;
+  bool countryIsLoading = true;
+
+  final int limit = 10;
+
+  bool isLoading = true;
+
+  UnmodifiableListView<Article> get categoryData => UnmodifiableListView(categoryArticleList);
+  UnmodifiableListView<Article> get countryData => UnmodifiableListView(countryArticleList);
   Box? articleBox;
 
   //get all news articles
@@ -36,7 +48,7 @@ class ArticleListProvider extends ChangeNotifier {
     topHeadlineNewsModel = await NewsListingService.getTopNewsHeadlines();
     if (topHeadlineNewsModel!.status == "ok") {
       articleInitStatus = ApiStatus.success;
-      articleList =topHeadlineNewsModel!.articles;
+      articleList = topHeadlineNewsModel!.articles;
     } else {
       articleInitStatus = ApiStatus.error;
       apiErrors = topHeadlineNewsModel!.status;
@@ -45,14 +57,36 @@ class ArticleListProvider extends ChangeNotifier {
     return articleInitStatus;
   }
 
-  //get all news articles based on category
-  Future<ApiStatus> getCategoryArticle(String category) async {
-    articleInitStatus = ApiStatus.loading;
+  //init category list
+  void initCategoryList(BuildContext context, String category, {bool initial = false}) {
+    categoryNewsModel = null;
+    if (initial) {
+      currentPage = 1;
+      categoryArticleList.clear();
+    }
+    isLoading = true;
+    getCategoryArticle(context, category);
+  }
+
+  //set category list
+  void setCategoryList(TopHeadlineNewsModel model) {
+    categoryNewsModel = model;
+    categoryArticleList.addAll(categoryNewsModel!.articles);
+    isLoading = false;
     notifyListeners();
-    categoryNewsModel = await NewsListingService.getCategoryNews(category);
+  }
+
+  //get all news articles based on category
+  Future<ApiStatus> getCategoryArticle(BuildContext context, String category) async {
+    if (currentPage == 1) {
+      articleInitStatus = ApiStatus.loading;
+    }
+    notifyListeners();
+    categoryNewsModel = await NewsListingService.getCategoryNews(context, category, currentPage, limit);
     if (categoryNewsModel!.status == "ok") {
       articleInitStatus = ApiStatus.success;
-      categoryArticleList =categoryNewsModel!.articles;
+      // categoryArticleList =categoryNewsModel!.articles;
+      setCategoryList(categoryNewsModel!);
       // print("......categoryArticleList..............$categoryArticleList");
     } else {
       articleInitStatus = ApiStatus.error;
@@ -69,25 +103,47 @@ class ArticleListProvider extends ChangeNotifier {
     searchNewsModel = await SearchNewsService.getSearchNews(searchText);
     if (searchNewsModel!.status == "ok") {
       articleInitStatus = ApiStatus.success;
-      searchArticleList =searchNewsModel!.articles;
-      // print("......searchList..............$searchArticleList");
+      searchArticleList = searchNewsModel!.articles;
+
     } else {
       articleInitStatus = ApiStatus.error;
       apiErrors = searchNewsModel!.status;
     }
     notifyListeners();
+    print("......searchList..............$searchArticleList");
     return articleInitStatus;
   }
 
-  //get news article based on country
-  Future<ApiStatus> getCountryArticle(String countryCode) async {
-    articleInitStatus = ApiStatus.loading;
+  void initCountryList(BuildContext context, String countryCode, {bool initial = false}) {
+    countryNewsModel = null;
+    if (initial) {
+      countryCurrentPage = 1;
+      countryArticleList.clear();
+    }
+    countryIsLoading = true;
+    getCountryArticle(context, countryCode);
+  }
+
+  //set country list
+  void setCountryList(TopHeadlineNewsModel model) {
+    countryNewsModel = model;
+    countryArticleList.addAll(countryNewsModel!.articles);
+    countryIsLoading = false;
     notifyListeners();
-    countryNewsModel = await CountryNewsService.getCountryNewsHeadlines(countryCode);
+  }
+
+  //get news article based on country
+  Future<ApiStatus> getCountryArticle(BuildContext context, String countryCode) async {
+    if (countryCurrentPage == 1) {
+      articleInitStatus = ApiStatus.loading;
+    }
+    notifyListeners();
+    countryNewsModel =
+        await CountryNewsService.getCountryNewsHeadlines(context, countryCode, countryCurrentPage, limit);
     if (countryNewsModel!.status == "ok") {
       articleInitStatus = ApiStatus.success;
-      countryArticleList =countryNewsModel!.articles;
-      // print("......countryList..............$countryArticleList");
+      // countryArticleList =countryNewsModel!.articles;
+      setCountryList(countryNewsModel!);
     } else {
       articleInitStatus = ApiStatus.error;
       apiErrors = countryNewsModel!.status;
@@ -107,8 +163,6 @@ class ArticleListProvider extends ChangeNotifier {
   final List<Article> _myList = [];
   List<Article> get myList => _myList;
 
-
-
   // void addBookmark(Article value) {
   //   _myList.add(value);
   //   print("item added");
@@ -127,7 +181,7 @@ class ArticleListProvider extends ChangeNotifier {
     return ApiStatus.success;
   }
 
-  void addBookmark(Article value) async{
+  void addBookmark(Article value) async {
     // _myList.add(value);
     print("item added");
     await _initHive();
@@ -136,15 +190,18 @@ class ArticleListProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeFromList(Article value) async{
+  void removeFromList(Article value) async {
     // _myList.remove(value);
     print("item removed");
     await _initHive();
-    await HiveHelper.removeFromDb(title:value.title, box: articleBox!);
+    await HiveHelper.removeFromDb(title: value.title, box: articleBox!);
     await getBookmarkListDb();
     notifyListeners();
   }
 
-
-
+  void setPageCount(int page) {
+    currentPage = page;
+    countryCurrentPage = page;
+    notifyListeners();
+  }
 }

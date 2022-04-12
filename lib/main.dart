@@ -27,7 +27,7 @@ Future<void> main() async {
     // Box box =await Hive.openBox("test data");
     // await box.put("1", "sample");
     // print(await box.get("1"));
-
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MultiProvider(providers: ProviderRegistrar.providers, child: const MyApp()));
 }
 

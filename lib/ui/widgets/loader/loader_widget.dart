@@ -13,7 +13,7 @@ class LoaderWidget extends StatelessWidget {
         width: radius,
         height: radius,
         child: const CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(AppColor.primaryColor2),
+          valueColor: AlwaysStoppedAnimation<Color>(AppColor.whiteColor),
           strokeWidth: 3,
           backgroundColor: AppColor.yellow2,
         ),

@@ -22,6 +22,7 @@ class BookmarkItemWidget extends StatefulWidget {
   final String author;
   final String content;
   final String url;
+  final String newsUrl;
   final DateTime publishedAt;
 
   const BookmarkItemWidget({
@@ -34,7 +35,7 @@ class BookmarkItemWidget extends StatefulWidget {
     required this.content,
     required this.url,
     required this.currentArticle,
-    required this.publishedAt,
+    required this.publishedAt, required this.newsUrl,
   }) : super(key: key);
 
   @override
@@ -49,7 +50,6 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
   Widget build(BuildContext context) {
     String date = dateFormat.format(widget.publishedAt);
     String formattedTime = DateFormat('kk:mm a').format(widget.publishedAt);
-    final _myList = context.watch<ArticleListProvider>().myList;
     final _bookmarkList = context.watch<ArticleListProvider>().bookmarkArticleList;
     return GestureDetector(
       onTap: () {
@@ -61,7 +61,7 @@ class _BookmarkItemWidgetState extends State<BookmarkItemWidget> {
               publishedAt: date + " " + formattedTime,
               subTitle: widget.subTitle,
               title: widget.title,
-              index: widget.index, pageType: ''),
+              index: widget.index, pageType: '', newsUrl:widget.newsUrl ),
         );
       },
       child: Card(

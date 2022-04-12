@@ -9,6 +9,7 @@ import '../../utils/common_padding/common_padding.dart';
 import '../../utils/text_style/text_style.dart';
 import '../navigation/routes.dart';
 import '../widgets/button_widget/custom_button_widget.dart';
+import '../widgets/loader/spinkit_loader.dart';
 import '../widgets/text_form_widget/text_form_widget.dart';
 import 'fire_auth.dart';
 
@@ -32,14 +33,20 @@ class _LoginScreenState extends State<LoginScreen> {
   bool showPasswordValidation = false;
 
   bool _isProcessing = false;
+  bool loader = false;
 
   Future<FirebaseApp> _initializeFirebase() async {
+    setState(() {
+      loader = true;
+    });
     FirebaseApp firebaseApp = await Firebase.initializeApp();
 
     User? user = FirebaseAuth.instance.currentUser;
-
+    setState(() {
+      loader = false;
+    });
     if (user != null) {
-      context.pushNamedAndRemoveUntil(ScreenNames.homeScreen,arguments: user);
+      context.pushNamedAndRemoveUntil(ScreenNames.homeScreen, arguments: user);
     }
 
     return firebaseApp;
@@ -88,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           maxLength: 70,
                           // keyboardType: TextInputType.emailAddress,
                           validation: (value) => Validator.validateEmail(
-                            email: value,
+                            email: value!.trimRight(),
                           ),
                           onChange: (String text) {
                             setState(() {
@@ -129,12 +136,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         _isProcessing
-                            ? const CircularProgressIndicator()
+                            ? const SpinKitWidget()
                             : Padding(
                                 padding: CommonPadding.paddingH10(context),
                                 child: CustomButton(
                                   label: "Sign In",
                                   onPress: () async {
+                                    setState(() {
+                                      if (_emailTextController.text.isNotEmpty &&
+                                          _passwordTextController.text.isNotEmpty) {
+                                        _isProcessing = true;
+                                      } else {
+                                        _isProcessing = false;
+                                      }
+                                    });
                                     _focusEmail.unfocus();
                                     _focusPassword.unfocus();
                                     FocusManager.instance.primaryFocus?.unfocus();
@@ -145,14 +160,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                       User? user = await FireAuth.signInUsingEmailPassword(
                                         context: context,
-                                        email: _emailTextController.text,
-                                        password: _passwordTextController.text,
+                                        email: _emailTextController.text.trim(),
+                                        password: _passwordTextController.text.trim(),
                                       );
 
-                                      // setState(() {
-                                      //   _isProcessing = false;
-                                      // });
-
+                                      setState(() {
+                                        _isProcessing = false;
+                                      });
                                     }
                                   },
                                 ),

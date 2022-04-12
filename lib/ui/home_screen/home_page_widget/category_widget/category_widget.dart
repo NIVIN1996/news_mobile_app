@@ -2,14 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news_mobile_app/ui/navigation/routes.dart';
 import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
-import 'package:provider/provider.dart';
-
 import '../../../../models/category_model/category_model_navigation_params.dart';
-import '../../../../models/top_news_headline_model/top_news_headline_model.dart';
-import '../../../../providers/news_list_provider/news_list_provider.dart';
-import '../../../../services/api_services/news_list_services/news_list_services.dart';
 import '../../../../utils/color/colors.dart';
-import '../../../../utils/static/enums.dart';
 import 'category_item_widget.dart';
 
 class CategoryWidget extends StatefulWidget {

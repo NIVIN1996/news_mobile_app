@@ -18,7 +18,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CommonAppBarWidget(
-        label: "",
+        label: "Notifications",
         showNotification: false,
         backPress: () {
           Navigator.pop(context);
@@ -27,7 +27,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
       ),
       body: Center(
         child: Text(
-          "No Notification Available",
+          "Upcoming Feature",
           textAlign: TextAlign.center,
           style: TextFontStyle.med(size: context.textPx * 20, color: AppColor.red),
         ),

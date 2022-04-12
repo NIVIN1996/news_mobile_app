@@ -43,10 +43,10 @@ class _MenuScreenState extends State<MenuScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('News4U', style: TextFontStyle.med(color: AppColor.black, size: context.textPx * 24)),
-                  const SizedBox(
-                    height: 30,
+                   SizedBox(
+                    height: context.heightPx*15,
                   ),
-                  Text(widget.currentUser != null ? widget.currentUser!.displayName.toString().toTitleCase() : "",
+                  Text(widget.currentUser != null ? widget.currentUser!.displayName.toString().toTitleCase() : "Guest User!",
                       style: TextFontStyle.normal(color: AppColor.buttonActive, size: context.textPx * 20)),
                   Text(widget.currentUser != null ? widget.currentUser!.email.toString() : "",
                       style: TextFontStyle.regular(color: AppColor.black, size: context.textPx * 15)),
@@ -170,6 +170,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
               ],
             ),
+            widget.currentUser != null ?
             ListTile(
               title: Text('Profile Settings', style: TextFontStyle.med(size: context.textPx * 20)),
               onTap: () {
@@ -177,7 +178,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     ? context.pushNamed(ScreenNames.login)
                     : context.pushNamed(ScreenNames.profileScreen, arguments: widget.currentUser);
               },
-            ),
+            ):const SizedBox(),
             ListTile(
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -198,7 +199,7 @@ class _MenuScreenState extends State<MenuScreen> {
             ListTile(
               title: Text('Bookmark', style: TextFontStyle.med(size: context.textPx * 20)),
               onTap: () {
-                context.pushNamed(ScreenNames.bookmarkListScreen);
+                context.pushNamed(ScreenNames.bookmarkListScreen,arguments: widget.currentUser);
               },
             ),
             ListTile(
@@ -207,12 +208,12 @@ class _MenuScreenState extends State<MenuScreen> {
                 context.pushNamed(ScreenNames.termsAndConditionScreen);
               },
             ),
-            ListTile(
-              title: Text('Rate Us', style: TextFontStyle.med(size: context.textPx * 20)),
-              onTap: () {
-                context.pushNamed(ScreenNames.rateUsScreen);
-              },
-            ),
+            // ListTile(
+            //   title: Text('Rate Us', style: TextFontStyle.med(size: context.textPx * 20)),
+            //   onTap: () {
+            //     context.pushNamed(ScreenNames.rateUsScreen);
+            //   },
+            // ),
             widget.currentUser == null
                 ? ListTile(
                     title: Row(

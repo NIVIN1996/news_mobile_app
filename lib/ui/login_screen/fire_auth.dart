@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_mobile_app/ui/navigation/navigation.dart';
 import '../../utils/color/colors.dart';
-import '../home_screen/home_screen.dart';
 import '../navigation/routes.dart';
 import '../widgets/snackbar_widget/snackbar_widget.dart';
 
@@ -70,10 +69,10 @@ class FireAuth {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         AppSnackBar.showSnackBarWithText(
-            context: context, text: "No User Found for that Email", backgroundColor: AppColor.red);
+            context: context, text: "Please check your credentials!", backgroundColor: AppColor.red);
       } else if (e.code == 'wrong-password') {
         print(e.code);
-        AppSnackBar.showSnackBarWithText(context: context, text: "Wrong Password", backgroundColor: AppColor.red);
+        AppSnackBar.showSnackBarWithText(context: context, text: "Please check your credentials!", backgroundColor: AppColor.red);
       }
     } catch (e) {
       print(e);

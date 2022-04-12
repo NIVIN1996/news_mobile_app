@@ -62,6 +62,7 @@ class ApiManager {
 
   Future<dynamic> _callApi(Future httpFuture, Function(Map<String, dynamic>) jsonToObjectFn) async {
     try {
+      print(url);
       _response = await httpFuture.timeout(Duration(seconds: timeOut));
 
       if (_response.statusCode != 200 && _response.statusCode != 201) {

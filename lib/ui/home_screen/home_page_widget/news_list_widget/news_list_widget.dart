@@ -5,7 +5,6 @@ import 'package:news_mobile_app/utils/responsive_config/responsive_config.dart';
 import 'package:provider/provider.dart';
 import '../../../../providers/news_list_provider/news_list_provider.dart';
 import '../../../../utils/static/enums.dart';
-import '../../../../utils/text_style/text_style.dart';
 import 'news_list_item_widget.dart';
 
 class NewsListWidget extends StatefulWidget {
@@ -60,7 +59,9 @@ class _NewsListWidgetState extends State<NewsListWidget> {
                             publishedAt: provider.topHeadlineNewsModel!.articles[index].publishedAt!,
                             subTitle: provider.topHeadlineNewsModel!.articles[index].content,
                             index: index,
-                            author: provider.topHeadlineNewsModel!.articles[index].source.name, pageType: "HomeNews",
+                            author: provider.topHeadlineNewsModel!.articles[index].source.name,
+                            pageType: "HomeNews",
+                            newsUrl: provider.topHeadlineNewsModel!.articles[index].url,
                           )
                         : Padding(
                             padding: EdgeInsets.symmetric(

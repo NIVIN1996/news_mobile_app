@@ -1,6 +1,6 @@
 class NewsAppUrls {
   static const baseUrl = 'https://newsapi.org/v2/';
-  static const apiKey = 'apiKey=cbc27393fe50431cb058f81ab4a5931f';
+  static const apiKey = 'apiKey=a1ca159c437a41abb943af25efefa5ed';
 
   static const topNewsHeadlines = baseUrl + 'top-headlines?country=in&' + apiKey;
   static const businessNewsHeadlines = baseUrl + 'top-headlines?country=in&category=business&' + apiKey;
